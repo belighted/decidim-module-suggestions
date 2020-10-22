@@ -4,7 +4,7 @@ module Decidim
   module Suggestions
     module SuggestionSlug
       def slug_from_id(id)
-        "i-#{id}"
+        "s-#{id}"
       end
 
       def id_from_slug(slug)

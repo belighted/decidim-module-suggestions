@@ -17,8 +17,7 @@ class CreateDecidimSuggestions < ActiveRecord::Migration[5.1]
 
       t.integer :decidim_author_id, null: false
       t.string :decidim_author_type, null: false
-      t.index :decidim_suggestions,
-              [:decidim_author_id, :decidim_author_type],
+      t.index [:decidim_author_id, :decidim_author_type],
               name: "index_decidim_suggestions_on_decidim_author"
 
       t.datetime :published_at, index: true
