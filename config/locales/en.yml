@@ -1,0 +1,544 @@
+---
+en:
+  activemodel:
+    attributes:
+      suggestion:
+        decidim_user_group_id: Author
+        description: Description
+        offline_votes: In-person signatures
+        scope_id: Scope
+        signature_end_date: End of signature collection period
+        signature_start_date: Start of signature collection period
+        signature_type: Signature collection type
+        signature_type_values:
+          any: Mixed
+          offline: In-person
+          online: Online
+        state: Status
+        title: Title
+      suggestion_author:
+        address: Address
+        city: City
+        id_document: DNI/NIE
+        name: Name and Surname
+        phone_number: Phone number
+        post_code: Post code
+        province: Province
+      suggestions_committee_member:
+        user: Committee member
+      suggestions_type:
+        area_enabled: Enable authors to choose the area for their suggestion
+        attachments_enabled: Enable attachments
+        banner_image: Banner image
+        collect_user_extra_fields: Collect participant personal data on signature
+        custom_signature_end_date_enabled: Enable authors to choose the end of signature collection period
+        description: Description
+        document_number_authorization_handler: Authorization to verify document number on signatures
+        extra_fields_legal_information: Legal information about the collection of personal data
+        minimum_committee_members: Minimum of committee members
+        online_signature_enabled: Online signature enabled
+        promoting_committee_enabled: Enable promoting committee
+        title: Title
+        undo_online_signatures_enabled: Enable participants to undo their online signatures
+        validate_sms_code_on_votes: Add SMS code validation step to signature process
+      suggestions_vote:
+        date_of_birth: Date of birth
+        document_number: Document number
+        name_and_surname: Name and surname
+        postal_code: Postal code
+      organization_data:
+        address: Address
+        id_document: ID document
+        name: Complete name
+    errors:
+      models:
+        suggestion:
+          attributes:
+            attachment:
+              file: File is invalid
+              needs_to_be_reattached: Needs to be reattached
+              title: Title shouldn't be empty
+  activerecord:
+    models:
+      decidim/suggestion:
+        one: Suggestion
+        other: Suggestions
+      decidim/suggestion_comittee:
+        one: Comittee
+        other: Comittees
+      decidim/suggestion_vote:
+        one: Signature
+        other: Signatures
+  decidim:
+    admin:
+      actions:
+        new_suggestion_type: New suggestion type
+      filters:
+        suggestions:
+          decidim_area_id_eq:
+            label: Area
+          state_eq:
+            label: State
+            values:
+              accepted: Enough signatures
+              created: Created
+              discarded: Discarded
+              published: Published
+              rejected: Not enough signatures
+              validating: Technical validation
+          type_id_eq:
+            label: Type
+        search_placeholder:
+          title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Search %{collection} by title, description, ID or author name.
+      menu:
+        suggestions: Suggestions
+        suggestions_types: Suggestion types
+      models:
+        suggestions:
+          fields:
+            created_at: Created at
+            id: ID
+            published_at: Published at
+            state: Status
+            supports_count: Signatures
+            title: Suggestions
+        suggestions_type_scope:
+          fields:
+            scope: Scope
+            supports_required: Signatures required
+          name: Suggestion type scope
+        suggestions_types:
+          fields:
+            created_at: Created at
+            title: Suggestion types
+          name: Suggestion type
+        suggestions_votes:
+          fields:
+            date_of_birth: Date of birth
+            document_number: Document number
+            hash: Hash
+            suggestion_end_date: End date
+            suggestion_id: Suggestion ID
+            suggestion_signatures_count: Number of signatures
+            suggestion_start_date: Start date
+            suggestion_title: Suggestion title
+            name_and_surname: Name and surname
+            postal_code: Postal code
+            time_and_date: Time and date
+            timestamp: Timestamp
+      titles:
+        suggestions: Suggestions
+        suggestions_types: Suggestion types
+    events:
+      suggestions:
+        admin:
+          suggestion_sent_to_technical_validation:
+            email_intro: The suggestion "%{resource_title}" has been sent to technical validation. Check it out at <a href="%{admin_suggestion_url}">the admin panel</a>
+            email_outro: You have received this notification because you are an admin of the platform.
+            email_subject: Suggestion "%{resource_title}" was sent to technical validation.
+            notification_title: The suggestion "%{resource_title}" has been sent to technical validation. Check it out at <a href="%{admin_suggestion_path}">the admin panel</a>
+        suggestion_extended:
+          email_intro: The signatures end date for the suggestion %{resource_title} have been extended!
+          email_outro: You have received this notification because you are following %{resource_title}. You can stop receiving notifications following the previous link.
+          email_subject: Suggestion signatures end date extended!
+          notification_title: The signatures end date for the <a href="%{resource_path}">%{resource_title}</a> suggestion have been extended.
+        milestone_completed:
+          affected_user:
+            email_intro: Your suggestion %{resource_title} has achieved the %{percentage}% of signatures!
+            email_outro: You have received this notification because you are the author of the suggestion %{resource_title}.
+            email_subject: New milestone completed!
+            notification_title: Your <a href="%{resource_path}">%{resource_title}</a> suggestion has achieved the %{percentage}% of signatures.
+          follower:
+            email_intro: The suggestion %{resource_title} has achieved the %{percentage}% of signatures!
+            email_outro: You have received this notification because you are following %{resource_title}. You can stop receiving notifications following the previous link.
+            email_subject: New milestone completed!
+            notification_title: The <a href="%{resource_path}">%{resource_title}</a> suggestion has achieved the %{percentage}% of signatures.
+        support_threshold_reached:
+          email_intro: The suggestion %{resource_title} has reached the support threshold
+          email_outro: You have received this notification because you are an admin of the platform.
+          email_subject: Support threshold reached
+          notification_title: The <a href="%{resource_path}">%{resource_title}</a> suggestion has reached the support threshold
+    gamification:
+      badges:
+        suggestions:
+          conditions:
+          - Go to the participation space of Intiatives
+          - Follow the steps to create a new suggestion
+          description: This badge is granted when you launch new suggestions, partnering with others to carry them out.
+          description_another: This participant has gotten %{score} suggestions published.
+          description_own: You've got %{score} suggestions published.
+          name: Published suggestions
+          next_level_in: Get %{score} more suggestions published to reach the next level!
+          unearned_another: This participant hasn't gotten any suggestions published yet.
+          unearned_own: You got no suggestions published yet.
+    help:
+      participatory_spaces:
+        suggestions:
+          contextual: "<p>An <strong>suggestion</strong> is a proposal that can be promoted by anyone on their own suggestion (independently of other channels or participation spaces) through the collection of (digital) signatures for the organization to carry out a specific action (modify a regulation, initiate a project, change the name of a department or a street, etc.).</p> <p>The promoters of an suggestion can define its objectives, gather support, debate, disseminate it and define meeting points where signatures can be collected from the attendees or debates open to other participants.</p> <p>Examples: An suggestion can collect signatures to convene a consultation among all the people of an organization, or to create or convene an assembly, or to initiate a process of budget increase for a territory or area of the organization. During the process of collecting signatures, more people can add to this demand and carry it forward in the organization.</p>\n"
+          page: "<p>An <strong>suggestion</strong> is a proposal that can be promoted by anyone on their own suggestion (independently of other channels or participation spaces) through the collection of (digital) signatures for the organization to carry out a specific action (modify a regulation, initiate a project, change the name of a department or a street, etc.).</p> <p>The promoters of an suggestion can define its objectives, gather support, debate, disseminate it and define meeting points where signatures can be collected from the attendees or debates open to other participants.</p> <p>Examples: An suggestion can collect signatures to convene a consultation among all the people of an organization, or to create or convene an assembly, or to initiate a process of budget increase for a territory or area of the organization. During the process of collecting signatures, more people can add to this demand and carry it forward in the organization.</p>\n"
+          title: What are suggestions?
+    suggestions:
+      actions:
+        answer: Answer
+      admin:
+        answers:
+          edit:
+            answer: Answer
+            title: Answer for %{title}
+          info_suggestion:
+            created_at: Created at
+            description: Description
+            suggestion_votes_count: Votes count
+            suggestions: Suggestions
+            state: State
+        committee_requests:
+          index:
+            approve: Approve
+            confirm_revoke: Are you sure?
+            invite_to_committee_help: Share this link to invite other participants to the promoter committee
+            no_members_yet: There are no members in the promoter committee
+            revoke: Revoke
+            title: Committee members
+        content_blocks:
+          highlighted_suggestions:
+            max_results: Maximum amount of elements to show
+        exports:
+          suggestions: Suggestions
+        suggestions:
+          edit:
+            accept: Accept suggestion
+            confirm: Are you sure?
+            discard: Discard the suggestion
+            export_pdf_signatures: Export PDF of signatures
+            export_votes: Export signatures
+            reject: Reject suggestion
+            send_to_technical_validation: Send to technical validation
+            success: The suggestion has been sent to technical validation
+            update: Update
+          form:
+            title: General information
+          index:
+            actions_title: Action
+            preview: Preview
+            print: Print
+          suggestion_attachments:
+            documents: Documents
+            edit: Edit
+            new: New
+            photos: Photos
+          show:
+            print: Print
+          update:
+            error: An error has occurred
+            success: The suggestion has been successfully updated
+        suggestions_type_scopes:
+          create:
+            error: An error has occurred
+            success: A new scope for the given suggestion type has been created
+          destroy:
+            success: The scope has been successfully removed
+          edit:
+            back: Back
+            confirm_destroy: Are you sure?
+            destroy: Delete
+            title: Edit suggestion type scope
+            update: Update
+          new:
+            back: Back
+            create: Create
+            title: Create suggestion type scope
+          update:
+            error: An error has occurred
+            success: The scope has been successfully updated
+        suggestions_types:
+          create:
+            error: An error has occurred
+            success: A new suggestion type has been successfully created
+          destroy:
+            success: The suggestion type has been successfully removed
+          edit:
+            confirm_destroy: Are you sure?
+            destroy: Delete
+            update: Update
+          form:
+            title: General information
+          suggestion_type_scopes:
+            title: Scopes for the suggestion type
+          new:
+            create: Create
+            title: New suggestion type
+          update:
+            error: An error has occurred
+            success: The suggestion type has been successfully updated
+      admin_log:
+        suggestion:
+          publish: "%{user_name} published the %{resource_name} suggestion"
+          send_to_technical_validation: "%{user_name} sent the %{resource_name} suggestion to technical validation"
+          unpublish: "%{user_name} discarded the %{resource_name} suggestion"
+          update: "%{user_name} updated the %{resource_name} suggestion"
+      admin_states:
+        accepted: Enough signatures
+        created: Created
+        discarded: Discarded
+        published: Published
+        rejected: Not enough signatures
+        validating: Technical validation
+      application_helper:
+        filter_area_values:
+          all: All
+        filter_scope_values:
+          all: All
+        filter_state_values:
+          accepted: Enough signatures
+          all: All
+          answered: Answered
+          closed: Closed
+          open: Open
+          rejected: Not enough signatures
+        filter_type_values:
+          all: All
+      committee_requests:
+        new:
+          continue: Continue
+          help_text: You are about to request becoming a member of the promoter committee of this suggestion
+        spawn:
+          success: Your request has been sent to the suggestion author.
+      content_blocks:
+        highlighted_suggestions:
+          name: Highlighted suggestions
+      create_suggestion:
+        fill_data:
+          back: Back
+          continue: Continue
+          fill_data_help: "<ul> <li>Review the content of your suggestion. Is your title easy to understand? Is the objective of your suggestion clear?</li> <li>You have to choose the type of signature. In-person, online or a combination of both</li> <li>Which is the geographic scope of the suggestion? City, district?</li> </ul>"
+          suggestion_type: Suggestion type
+          more_information: "(More information)"
+          select_area: Select an area
+          select_scope: Select a scope
+        finish:
+          back: Back
+          back_to_suggestions: Back to suggestions
+          callout_text: Congratulations! Your citizen suggestion has been successfully created.
+          confirm: Confirm
+          edit_my_suggestion: Edit my suggestions
+          go_to_my_suggestions: Go to my suggestions
+          more_information: "(More information)"
+          send_my_suggestion: Send my suggestion
+        finish_help:
+          access_reminder: Remember that you will always be able to access your suggestions through the participant menu.
+          help_for_organizations: If you are an association you will have to upload the minutes of the management board of all the organisations that form the Promoting Commission
+          help_in_person_signatures: If you have chosen to collect the signatures in-person or combined with online, you will have to upload the required information.
+          help_text: Remember that in order to properly process the suggestion you must access the administration panel where you will find the user menu, upload the information required and send it for processing.
+          suggestions_page_link: You can look up all this information on the %{link} dedicated to inform about suggestions.
+          page: page
+        previous_form:
+          back: Back
+          continue: Continue
+          help: What does the suggestion consist of? Write down the title and description. We recommend a short and concise title and a description focused on the proposed solution.
+          more_information: "(More information)"
+        promotal_committee:
+          back: Back
+          individual_help_text: This kind of citizen suggestion requires a Promoting Commission consisting of at least %{committee_size} people (attestors). You must share the following link with the other people that are part of this suggestion. When your contacts receive this link they will have to follow the indicated steps.
+          more_information: "(More information)"
+        select_suggestion_type:
+          back: Back
+          choose_html: I want to create a <strong>%{title}</strong>
+          more_information: "(More information)"
+          select: I want to promote this suggestion
+          select_suggestion_type_help: Citizen suggestions are a means by which the citizenship can intervene so that the City Council can undertake actions in defence of the general interest that are within fields of municipal jurisdiction. Which suggestion do you want to launch?
+        share_committee_link:
+          continue: Continue
+          invite_to_committee_help: Link to invite people that will be part of the promoter committee
+        show_similar_suggestions:
+          back: Back
+          compare_help: If any of the following suggestions is similar to yours we encourage you to sign it. Your proposal will have more possibilities to get done.
+          continue: My suggestion is different
+          more_information: "(More information)"
+      events:
+        create_suggestion_event:
+          email_intro: "%{author_name} %{author_nickname}, who you are following, has created a new suggestion, check it out and contribute:"
+          email_outro: You have received this notification because you are following %{author_nickname}. You can stop receiving notifications following the previous link.
+          email_subject: New suggestion by %{author_nickname}
+          notification_title: The <a href="%{resource_path}">%{resource_title}</a> suggestion was created by <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
+        endorse_suggestion_event:
+          email_intro: "%{author_name} %{author_nickname}, who you are following, has endorsed the following suggestion, maybe you want to contribute to the conversation:"
+          email_outro: You have received this notification because you are following %{author_nickname}. You can stop receiving notifications following the previous link.
+          email_subject: Suggestion endorsed by %{author_nickname}
+          notification_title: The <a href="%{resource_path}">%{resource_title}</a> suggestion was endorsed by <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
+      index:
+        title: Suggestions
+      suggestion_signatures:
+        fill_personal_data:
+          continue: Continue
+          date_select:
+            day: Day
+            month: Month
+            year: Year
+          help: Please, fill the following fields with your personal data to sign the suggestion
+        finish:
+          back_to_suggestion: Back to suggestion
+        sms_code:
+          continue: Check code and continue
+          help: Check the SMS received at your phone
+        sms_phone_number:
+          continue: Send me an SMS
+          help: Fill the form with your verified phone number to request your verification code
+      suggestion_votes:
+        create:
+          error: There was a problem signing the suggestion.
+          invalid: The data provided to sign the suggestion is not valid
+          success_html: Congratulations! The <strong> %{title}</strong> suggestion has been successfully signed
+        personal_data:
+          invalid: Personal data is not consistent with data provided for authorization.
+        sms_code:
+          invalid: Your verification code doesn't match ours. Please double-check the SMS we sent you.
+        sms_phone:
+          invalid: The phone number is invalid or pending of authorization. Please, check your authorizations.
+      suggestions:
+        author:
+          deleted: Deleted
+        author_list:
+          hidden_authors_count:
+            one: and 1 more person
+            other: and %{count} more people
+        count:
+          title:
+            one: "%{count} suggestion"
+            other: "%{count} suggestions"
+        filters:
+          any: Any
+          area: Area
+          author: Author
+          myself: My suggestions
+          scope: Scope
+          search: Search
+          state: Status
+          type: Type
+        filters_small_view:
+          close_modal: Close window
+          filter: Filter
+          filter_by: Filter by
+          unfold: Unfold
+        index_header:
+          new_suggestion: New suggestion
+        interactions:
+          comments_count:
+            count:
+              one: Comment
+              other: Comments
+        orders:
+          label: 'Sort suggestions by:'
+          most_commented: Most commented
+          most_voted: Most signed
+          random: Random
+          recent: Most recent
+          recently_published: Most recently published
+        result:
+          answer_title:
+            accepted: This proposal has been accepted because
+            created: This proposal has been created
+            discarded: This proposal has been discarded because
+            published: This proposal is published because
+            rejected: This proposal has been rejected because
+            validating: This proposal is being evaluated
+          suggestion_rejected_reason: This suggestion has been rejected due to its lack of signatures.
+        show:
+          any_vote_method: This citizen suggestion collects both online and in-person signatures.
+          follow_description: Receive a notification when there are news in this suggestion
+          offline_method: This citizen suggestion only collects in-person signatures.
+        signature_identities:
+          select_identity: Select participant identifier
+        signatures_count:
+          one: " signature"
+          other: " signatures"
+        supports:
+          title: Listing of signatures
+        vote_cabin:
+          already_voted: Already signed
+          supports_required: "%{total_supports} signatures required"
+          verification_required: Verify your account to sign the suggestion
+          vote: Sign
+          votes_blocked: Signing disabled
+        votes_count:
+          count:
+            one: Signature
+            other: Signatures
+          most_popular_suggestion: Most popular suggestion
+          need_more_votes: Need more signatures
+      suggestions_mailer:
+        creation_subject: Your suggestion '%{title}' has been created
+        suggestion_link:
+          check_suggestion_details: You can see the suggestion details
+          here: here
+        more_information: Here you have more information about the suggestion creation process.
+        progress_report_body_for: The suggestion %{title} has reached the %{percentage}% of required signatures.
+        progress_report_for: 'Summary about the suggestion: %{title}'
+        promotal_committee_help: Remember that you must invite at least %{member_count} people to promoter committee. Forward the following link to invite people to the promoter committee
+        status_change_body_for: 'The suggestion %{title} has changed its status to: %{state}'
+        status_change_for: The suggestion %{title} has changed its status
+      last_activity:
+        new_suggestion: New suggestion
+      pages:
+        home:
+          highlighted_suggestions:
+            active_suggestions: Active suggestions
+            see_all_suggestions: See all suggestions
+      show:
+        badge_name:
+          accepted: Enough signatures
+          created: Created
+          discarded: Discarded
+          published: Published
+          rejected: Not enough signatures
+          validating: Technical validation
+      states:
+        accepted: Accepted
+        expired: Expired
+      unavailable_scope: Unavailable scope
+      versions:
+        shared:
+          back_to_resource: Go back to suggestion
+    menu:
+      suggestions: Suggestions
+    resources:
+      suggestions_type:
+        actions:
+          title: Actions
+          vote: Sign
+  layouts:
+    decidim:
+      admin:
+        suggestion:
+          attachments: Attachments
+          committee_members: Committee members
+          components: Components
+          information: Information
+      suggestion_creation_header:
+        back: Back
+        fill_data: Create
+        finish: Finish
+        previous_form: Start
+        promotal_committee: Promoter committee
+        select_suggestion_type: Choose
+        show_similar_suggestions: Compare
+        step: Step %{current} of %{total}
+        title: Create new suggestion
+      suggestion_header:
+        suggestion_menu_item: Suggestion
+      suggestion_signature_creation_header:
+        back: Back
+        fill_personal_data: Complete your data
+        finish: Finish
+        finished: Suggestion signature created
+        see_steps: see steps
+        select_identity: Select identity
+        sms_code: SMS code verification
+        sms_phone_number: Mobile phone number
+        step: Step %{current} of %{total}
+        title: Sign %{suggestion_title}
+      suggestions:
+        suggestion:
+          check: Check it out
+          check_and_support: Check it out and sign
+        no_suggestions_yet:
+          no_suggestions_yet: No suggestions yet!

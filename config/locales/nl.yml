@@ -1,0 +1,529 @@
+nl:
+  activemodel:
+    attributes:
+      suggestion:
+        decidim_user_group_id: Auteur
+        description: Beschrijving
+        offline_votes: Face-to-face handtekeningen
+        scope_id: Bereik
+        signature_end_date: Einde van de periode om handtekeningen te verzamelen
+        signature_start_date: Begin van de periode voor het verzamelen van handtekeningen
+        signature_type: Handtekening verzamelingstype
+        signature_type_values:
+          any: Gemengd
+          offline: Face to face
+          online: Online
+        state: Status
+        title: Titel
+      suggestion_author:
+        address: Adres
+        city: stad
+        id_document: DNI / NIE
+        name: Naam en familienaam
+        phone_number: Telefoonnummer
+        post_code: Postcode
+        province: Provincie
+      suggestions_committee_member:
+        user: Commissielid
+      suggestions_type:
+        area_enabled: Sta auteurs toe het gebied te kiezen voor hun suggestie
+        attachments_enabled: Bijlagen inschakelen
+        banner_image: Banner afbeelding
+        collect_user_extra_fields: Persoonlijke gebruikersgegevens verzamelen bij ondertekening
+        custom_signature_end_date_enabled: Sta auteurs toe het einde van de handtekeningperiode te kiezen
+        description: Beschrijving
+        document_number_authorization_handler: Autorisatie om documentnummer op handtekeningen te verifiëren
+        extra_fields_legal_information: Juridische informatie over het verzamelen van persoonlijke gegevens
+        minimum_committee_members: Minimaal aantal commissieleden
+        online_signature_enabled: Online handtekening ingeschakeld
+        promoting_committee_enabled: Inschakelen bevorderingscommissie
+        title: Titel
+        undo_online_signatures_enabled: Gebruikers in staat stellen hun online handtekeningen ongedaan te maken
+        validate_sms_code_on_votes: Voeg een sms-codevalidatiestap toe aan het handtekeningproces
+      suggestions_vote:
+        date_of_birth: Geboortedatum
+        document_number: Documentnummer
+        name_and_surname: Naam en achternaam
+        postal_code: Postcode
+      organization_data:
+        address: Adres
+        id_document: Identiteitsbewijs
+        name: Volledige naam
+    errors:
+      models:
+        suggestion:
+          attributes:
+            attachment:
+              file: Bestand is ongeldig
+              needs_to_be_reattached: Moet opnieuw worden gekoppeld
+              title: Titel mag niet leeg zijn
+  activerecord:
+    models:
+      decidim/suggestion:
+        one: Suggestie
+        other: Suggesties
+      decidim/suggestion_comittee:
+        one: Commissie
+        other: Commissies
+      decidim/suggestion_vote:
+        one: Handtekening
+        other: handtekeningen
+  decidim:
+    admin:
+      actions:
+        new_suggestion_type: Nieuw suggestiestype
+      filters:
+        search_placeholder:
+          title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Zoek %{collection} op titel, beschrijving, ID of auteur naam.
+      menu:
+        suggestions: suggesties
+        suggestions_types: Suggestietypes
+      models:
+        suggestions:
+          fields:
+            created_at: Aangemaakt op
+            id: ID kaart
+            published_at: Gepubliceerd op
+            state: Status
+            supports_count: Handtekeningen
+            title: suggesties
+        suggestions_type_scope:
+          fields:
+            scope: Bereik
+            supports_required: Ondersteuning vereist
+          name: Suggestie type bereik
+        suggestions_types:
+          fields:
+            created_at: Aangemaakt op
+            title: Suggestietypes
+          name: Suggestietype
+        suggestions_votes:
+          fields:
+            date_of_birth: Geboortedatum
+            document_number: Documentnummer
+            hash: Hash
+            suggestion_end_date: Einddatum
+            suggestion_id: Suggestie ID
+            suggestion_signatures_count: Aantal handtekeningen
+            suggestion_start_date: Begindatum
+            suggestion_title: Titel van het suggestie
+            name_and_surname: Naam en achternaam
+            postal_code: Postcode
+            time_and_date: Tijd en datum
+            timestamp: tijdstempel
+      titles:
+        suggestions: suggesties
+        suggestions_types: Suggestietypes
+    events:
+      suggestions:
+        admin:
+          suggestion_sent_to_technical_validation:
+            email_intro: Het suggestie "%{resource_title}" is verzonden naar technische validatie. Bekijk het via <a href="%{admin_suggestion_url}">het beheerpaneel</a>
+            email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
+            email_subject: Suggestie "%{resource_title}" werd verzonden naar technische validatie.
+            notification_title: Het suggestie "%{resource_title}" is verzonden naar technische validatie. Bekijk het via <a href="%{admin_suggestion_path}">het beheerpaneel</a>
+        suggestion_extended:
+          email_intro: De einddatum voor de handtekeningen van suggestie %{resource_title} is verlengd!
+          email_outro: U hebt deze melding ontvangen omdat u %{resource_title} volgt. Je kunt de meldingen stoppen door de vorige link te volgen.
+          email_subject: Einddatum handtekeningen voor het suggestie verlengd!
+          notification_title: De einddatum van de ondertekening van het <a href="%{resource_path}">%{resource_title}</a> suggestie is verlengd.
+        milestone_completed:
+          affected_user:
+            email_intro: Uw suggestie %{resource_title} heeft %{percentage}% handtekeningen bereikt!
+            email_outro: U hebt deze melding ontvangen omdat u de auteur bent van het suggestie %{resource_title}.
+            email_subject: Nieuwe mijlpaal voltooid!
+            notification_title: Uw <a href="%{resource_path}">%{resource_title}</a> suggestie heeft %{percentage}% handtekeningen bereikt.
+          follower:
+            email_intro: Het suggestie %{resource_title} heeft %{percentage}% handtekeningen bereikt!
+            email_outro: U hebt deze melding ontvangen omdat u %{resource_title} volgt. Je kunt de meldingen stoppen door de vorige link te volgen.
+            email_subject: Nieuwe mijlpaal voltooid!
+            notification_title: Het <a href="%{resource_path}">%{resource_title}</a> suggestie heeft %{percentage}% handtekeningen behaald.
+        support_threshold_reached:
+          email_intro: Het suggestie %{resource_title} heeft de steundrempel bereikt
+          email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
+          email_subject: Ondersteuningsdrempel bereikt
+          notification_title: Het <a href="%{resource_path}">%{resource_title}</a> suggestie heeft de support drempel bereikt
+    gamification:
+      badges:
+        suggestions:
+          conditions:
+            - Ga naar de participatieruimte van Intiatieven
+            - Volg de stappen om een ​​nieuw suggestie te maken
+          description: Deze badge wordt toegekend wanneer u nieuwe suggesties start en samenwerkt met anderen om ze uit te voeren.
+          description_another: Deze gebruiker heeft %{score} suggesties gepubliceerd.
+          description_own: Je hebt %{score} suggesties gepubliceerd.
+          name: Gepubliceerde suggesties
+          next_level_in: Publiceer nog %{score} suggesties om het volgende niveau te bereiken!
+          unearned_another: Deze gebruiker heeft nog geen suggesties gepubliceerd.
+          unearned_own: Je hebt nog geen suggesties gepubliceerd.
+    help:
+      participatory_spaces:
+        suggestions:
+          contextual: "<p>Een suggestie is een voorstel dat door iedereen op eigen suggestie (onafhankelijk van andere kanalen of participatieruimten) kan worden gepromoot door middel van het verzamelen van (digitale) handtekeningen voor de organisatie om een ​​specifieke actie uit te voeren (een verordening wijzigen, een project initiëren , verander de naam van een afdeling of een straat, enz.).</p> <p>De suggestienemers van een suggestie kunnen hun doelstellingen definiëren, steun verzamelen, debatteren, verspreiden en vergaderingspunten definiëren waar handtekeningen kunnen worden verzameld bij de deelnemers of debatten kunnen worden geopend voor andere deelnemers.</p> <p>Voorbeelden: een suggestie kan handtekeningen verzamelen om een ​​raadpleging bijeen te roepen onder alle mensen van een organisatie, of om een ​​vergadering te creëren of bijeen te roepen, of om een ​​proces van budgetverhoging op te zetten voor een territorium of een deel van de organisatie. Tijdens het proces van het verzamelen van handtekeningen kunnen meer mensen aan deze vraag toevoegen en deze verder brengen in de organisatie.</p>\n"
+          page: "<p>Een suggestie is een voorstel dat door iedereen op eigen suggestie (onafhankelijk van andere kanalen of participatieruimten) kan worden gepromoot door middel van het verzamelen van (digitale) handtekeningen voor de organisatie om een ​​specifieke actie uit te voeren (een verordening wijzigen, een project initiëren , verander de naam van een afdeling of een straat, enz.).</p> <p>De suggestienemers van een suggestie kunnen hun doelstellingen definiëren, steun verzamelen, debatteren, verspreiden en vergaderingspunten definiëren waar handtekeningen kunnen worden verzameld bij de deelnemers of debatten kunnen worden geopend voor andere deelnemers.</p> <p>Voorbeelden: een suggestie kan handtekeningen verzamelen om een ​​raadpleging bijeen te roepen onder alle mensen van een organisatie, of om een ​​vergadering te creëren of bijeen te roepen, of om een ​​proces van budgetverhoging op te zetten voor een territorium of een deel van de organisatie. Tijdens het proces van het verzamelen van handtekeningen kunnen meer mensen aan deze vraag toevoegen en deze verder brengen in de organisatie.</p>\n"
+          title: Wat zijn suggesties?
+    suggestions:
+      actions:
+        answer: Antwoord
+      admin:
+        answers:
+          edit:
+            answer: Antwoord
+            title: Antwoord voor %{title}
+          info_suggestion:
+            created_at: Gemaakt bij
+            description: Omschrijving
+            suggestion_votes_count: Aantal stemmen
+            suggestions: suggesties
+            state: Status
+        committee_requests:
+          index:
+            approve: Goedkeuren
+            confirm_revoke: Weet je het zeker?
+            invite_to_committee_help: Deel deze link om andere deelnemers uit te nodigen voor de promotieraad
+            no_members_yet: Er zijn geen leden in de promotieraad
+            revoke: Intrekken
+            title: Commissieleden
+        content_blocks:
+          highlighted_suggestions:
+            max_results: Maximum aantal elementen dat kan worden weergegeven
+        exports:
+          suggestions: Suggesties
+        suggestions:
+          edit:
+            accept: Accepteer suggestie
+            confirm: Weet je het zeker?
+            discard: Gooi het suggestie weg
+            export_pdf_signatures: PDF van handtekeningen exporteren
+            export_votes: Handtekeningen exporteren
+            reject: Verwerp suggestie
+            send_to_technical_validation: Stuur naar technische validatie
+            success: Het suggestie is verzonden naar technische validatie
+            update: Bijwerken
+          form:
+            title: Algemene informatie
+          index:
+            actions_title: Actie
+            preview: Voorbeeld
+            print: Afdrukken
+          suggestion_attachments:
+            documents: Documenten
+            edit: Bewerken
+            new: Nieuw
+            photos: Foto's
+          show:
+            print: Afdrukken
+          update:
+            error: er is een fout opgetreden
+            success: Het burgersuggestie is met succes bijgewerkt
+        suggestions_type_scopes:
+          create:
+            error: er is een fout opgetreden
+            success: Er is een nieuwe scope voor het gegeven suggestietype gecreëerd
+          destroy:
+            success: De scope is succesvol verwijderd
+          edit:
+            back: Terug
+            confirm_destroy: Weet je het zeker?
+            destroy: Verwijder
+            title: Bewerk het suggestietype bereik
+            update: Bijwerken
+          new:
+            back: Terug
+            create: creëren
+            title: Creër suggestiestype bereik
+          update:
+            error: er is een fout opgetreden
+            success: Het bereik is met succes bijgewerkt
+        suggestions_types:
+          create:
+            error: er is een fout opgetreden
+            success: Een nieuw suggestietype is succesvol gemaakt
+          destroy:
+            success: Het suggestietype is succesvol verwijderd
+          edit:
+            confirm_destroy: Weet je het zeker?
+            destroy: Verwijder
+            update: Bijwerken
+          form:
+            title: Algemene informatie
+          suggestion_type_scopes:
+            title: Scopes voor het suggestietype
+          new:
+            create: creëren
+            title: Nieuw suggestiestype
+          update:
+            error: Er is een fout opgetreden
+            success: Het suggestietype is succesvol bijgewerkt
+      admin_log:
+        suggestion:
+          publish: "%{user_name} heeft het suggestie %{resource_name} gepubliceerd"
+          send_to_technical_validation: "%{user_name} heeft het suggestie %{resource_name} verzonden naar technische validatie"
+          unpublish: "%{user_name} heeft het suggestie %{resource_name} verwijderd"
+          update: "%{user_name} heeft het suggestie %{resource_name} bijgewerkt"
+      admin_states:
+        accepted: Genoeg handtekeningen
+        created: gemaakt
+        discarded: Afgedankte
+        published: Gepubliceerd
+        rejected: Niet genoeg handtekeningen
+        validating: Technische validatie
+      application_helper:
+        filter_area_values:
+          all: Allemaal
+        filter_scope_values:
+          all: Allemaal
+        filter_state_values:
+          accepted: Genoeg handtekeningen
+          all: Allemaal
+          answered: beantwoord
+          closed: Gesloten
+          open: Open
+          rejected: Niet genoeg handtekeningen
+        filter_type_values:
+          all: Allemaal
+      committee_requests:
+        new:
+          continue: Doorgaan met
+          help_text: U staat op het punt lid te worden van de promotieraad van dit suggestie
+        spawn:
+          success: Je verzoek is verzonden aan de auteur van het suggestie.
+      content_blocks:
+        highlighted_suggestions:
+          name: Gemarkeerde suggesties
+      create_suggestion:
+        fill_data:
+          back: Terug
+          continue: Doorgaan met
+          fill_data_help: "<ul> <li>Herbekijk de inhoud van je suggestie. Is uw titel gemakkelijk te begrijpen? Is het doel van uw suggestie duidelijk?</li> <li>Je moet het type handtekening kiezen. Persoonlijk, online of een combinatie van beide</li> <li>Wat is de geografische reikwijdte van het suggestie? Stad, streek?</li> </ul>"
+          suggestion_type: Suggestietype
+          more_information: "(Meer informatie)"
+          select_area: Selecteer een gebied
+          select_scope: Selecteer een scope
+        finish:
+          back: Terug
+          back_to_suggestions: Terug naar suggesties
+          callout_text: Proficiat! Je burgersuggestie is aangemaakt.
+          confirm: Bevestigen
+          edit_my_suggestion: Bewerk mijn suggesties
+          go_to_my_suggestions: Ga naar mijn suggesties
+          more_information: "(Meer informatie)"
+          send_my_suggestion: Stuur mijn suggestie
+        finish_help:
+          access_reminder: Vergeet niet dat je altijd toegang hebt tot je suggesties via het gebruikersmenu.
+          help_for_organizations: Als u een vereniging bent, moet u de notulen van het directiecomité uploaden van alle organisaties die de promotieraad vormen
+          help_in_person_signatures: Als je ervoor hebt gekozen de handtekeningen persoonlijk te verzamelen of in combinatie met online, moet je de vereiste informatie uploaden.
+          help_text: Vergeet niet dat om het suggestie goed te verwerken, u toegang moet hebben tot het administratiepaneel, waar u het gebruikersmenu kunt vinden, de vereiste informatie kunt uploaden en deze voor verwerking kunt verzenden.
+          suggestions_page_link: Je kunt al deze informatie op de %{link} opzoeken om je te informeren over suggesties.
+          page: pagina
+        previous_form:
+          back: Terug
+          continue: Doorgaan met
+          help: Waaruit bestaat het suggestie? Noteer de titel en beschrijving. We adviseren een korte en bondige titel en een beschrijving gericht op de voorgestelde oplossing.
+          more_information: "(Meer informatie)"
+        promotal_committee:
+          back: Terug
+          individual_help_text: Dit soort burgersuggestie vereist een promotieraad bestaande uit ten minste %{committee_size} personen (attestors). Deel de volgende link met de anderen die deel uitmaken van dit suggestie. Wanneer uw contacten deze link ontvangen, moeten zij de aangegeven stappen volgen.
+          more_information: "(Meer informatie)"
+        select_suggestion_type:
+          back: Terug
+          choose_html: Ik wil een <strong>%{title}</strong> aanmaken
+          more_information: "(Meer informatie)"
+          select: Ik wil dit suggestie promoten
+          select_suggestion_type_help: Burgersuggesties zijn een middel waarmee burgers kunnen ingrijpen, zodat de gemeenteraad acties kan ondernemen ter verdediging van het algemeen belang die zich binnen de rechtsgebieden van de gemeente bevinden. Welk suggestie wil jij lanceren?
+        share_committee_link:
+          continue: Doorgaan met
+          invite_to_committee_help: Link om mensen uit te nodigen die deel zullen uitmaken van de promotieraad
+        show_similar_suggestions:
+          back: Terug
+          compare_help: Als een van de volgende suggesties vergelijkbaar is met dat van jou, moedigen wij je aan dit te ondersteunen. Je voorstel heeft meer mogelijkheden om gerealiseerd te worden.
+          continue: Mijn suggestie is anders
+          more_information: "(Meer informatie)"
+      events:
+        create_suggestion_event:
+          email_intro: "%{author_name} %{author_nickname}, die je volgt, heeft een nieuw suggestie gemaakt, bekijk het en draag bij:"
+          email_outro: Je hebt deze melding ontvangen omdat je %{author_nickname} volgt. Je kunt stoppen met het ontvangen van notificaties door te klikken op de voorgaande link.
+          email_subject: Nieuw suggestie van %{author_nickname}
+          notification_title: Het <a href="%{resource_path}">%{resource_title}</a> suggestie is gemaakt door <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
+        endorse_suggestion_event:
+          email_intro: "%{author_name} %{author_nickname}, die je volgt, heeft het volgende suggestie onderschreven, misschien wil je een bijdrage leveren aan het gesprek:"
+          email_outro: Je hebt deze melding ontvangen omdat je %{author_nickname}volgt. Je kunt stoppen met het ontvangen van meldingen via deze link.
+          email_subject: Suggestie goedgekeurd door %{author_nickname}
+          notification_title: Het <a href="%{resource_path}">%{resource_title}</a> suggestie werd goedgekeurd door <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
+      index:
+        title: suggesties
+      suggestion_signatures:
+        fill_personal_data:
+          continue: Doorgaan met
+          date_select:
+            day: Dag
+            month: Maand
+            year: Jaar
+          help: Vul alstublieft de volgende velden in met uw persoonlijke gegevens om het suggestie te ondertekenen
+        finish:
+          back_to_suggestion: Terug naar suggestie
+        sms_code:
+          continue: Controleer de code en ga verder
+          help: Controleer de sms die je op je telefoon hebt ontvangen
+        sms_phone_number:
+          continue: Stuur me een sms
+          help: Vul het formulier in met uw geverifieerde telefoonnummer om uw verificatiecode aan te vragen
+      suggestion_votes:
+        create:
+          error: Er zijn fouten opgetreden bij het ondertekenen van het suggestie.
+          invalid: De gegevens die worden verstrekt om het suggestie te ondertekenen zijn niet geldig
+          success_html: Proficiat! Het suggestie <strong> %{title}</strong> is correct ondertekend
+        personal_data:
+          invalid: Persoonlijke gegevens komen niet overeen met gegevens die zijn verstrekt voor autorisatie.
+        sms_code:
+          invalid: Uw verificatiecode komt niet overeen met de onze. Controleer nogmaals de sms die we u hebben gestuurd.
+        sms_phone:
+          invalid: Het telefoonnummer is ongeldig of in afwachting van autorisatie. Controleer alstublieft uw autorisaties.
+      suggestions:
+        author:
+          deleted: verwijderde
+        author_list:
+          hidden_authors_count:
+            one: en nog 1 persoon
+            other: en nog %{count} mensen
+        count:
+          title:
+            one: "%{count} suggestie"
+            other: "%{count} suggesties"
+        filters:
+          any: Alle
+          area: Oppervlak
+          author: Auteur
+          myself: Mijn suggesties
+          scope: Bereik
+          search: Zoeken
+          state: Staat
+          type: Type
+        filters_small_view:
+          close_modal: Sluit venster
+          filter: Sorteer
+          filter_by: Sorteer op
+          unfold: Uitvouwen
+        index_header:
+          new_suggestion: Nieuw suggestie
+        interactions:
+          comments_count:
+            count:
+              one: Commentaar
+              other: Commentaar
+        orders:
+          label: 'Sorteer suggesties op:'
+          most_commented: Meeste reacties
+          most_voted: Meest ondertekend
+          random: Willekeurig
+          recent: Meest recente
+          recently_published: Meest recent gepubliceerd
+        result:
+          answer_title:
+            accepted: Dit voorstel is geaccepteerd omdat
+            created: Dit voorstel is gemaakt
+            discarded: Dit voorstel is afgewezen omdat
+            published: Dit voorstel is gepubliceerd omdat
+            rejected: Dit voorstel is afgewezen omdat
+            validating: Dit voorstel wordt beoordeeld
+          suggestion_rejected_reason: Dit suggestie is afgewezen vanwege het gebrek aan handtekeningen.
+        show:
+          any_vote_method: Dit burgersuggestie verzamelt zowel online als face-to-face stemmen.
+          follow_description: Ontvang een melding wanneer er nieuws is in dit suggestie
+          offline_method: Dit burgersuggestie verzamelt alleen face-to-face stemmen.
+        signature_identities:
+          select_identity: Selecteer gebruikers-ID
+        signatures_count:
+          one: " handtekening"
+          other: " handtekeningen"
+        supports:
+          title: Lijst van handtekeningen
+        vote_cabin:
+          already_voted: Al getekend
+          supports_required: "%{total_supports} handtekeningen vereist"
+          verification_required: Verifieer uw account om het suggestie te ondertekenen
+          vote: Teken
+          votes_blocked: Ondertekenen uitgeschakeld
+        votes_count:
+          count:
+            one: HANDTEKENING
+            other: HANDTEKENINGEN
+          most_popular_suggestion: Populairste suggestie
+          need_more_votes: Meer handtekeningen nodig
+      suggestions_mailer:
+        creation_subject: Je burgersuggestie '%{title}' is gemaakt
+        suggestion_link:
+          check_suggestion_details: Je kan de details van het suggestie bekijken
+          here: hier
+        more_information: Hier heb je meer informatie over het proces voor het maken van suggesties.
+        progress_report_body_for: Het suggestie %{title} heeft %{percentage}% van de vereiste stemmen behaald.
+        progress_report_for: 'Samenvatting over het suggestie: %{title}'
+        promotal_committee_help: Vergeet niet dat u ten minste %{member_count} personen moet uitnodigen voor een promotieraad. Stuur de volgende link door om mensen uit te nodigen voor de promotieraad
+        status_change_body_for: 'Het suggestie %{title} heeft de status gewijzigd in: %{state}'
+        status_change_for: Het suggestie %{title} is van status veranderd
+      last_activity:
+        new_suggestion: Nieuw suggestie
+      pages:
+        home:
+          highlighted_suggestions:
+            active_suggestions: Actieve suggesties
+            see_all_suggestions: Bekijk alle suggesties
+      show:
+        badge_name:
+          accepted: Genoeg handtekeningen
+          created: Aangemaakt
+          discarded: Verwijderd
+          published: Ingediend
+          rejected: Niet genoeg handtekeningen
+          validating: Technische validatie
+      states:
+        accepted: Aanvaard
+        expired: Vervallen
+      unavailable_scope: Niet beschikbaar bereik
+      versions:
+        shared:
+          back_to_resource: Ga terug naar het suggestie
+    menu:
+      suggestions: suggesties
+    resources:
+      suggestions_type:
+        actions:
+          title: acties
+          vote: Onderteken
+  layouts:
+    decidim:
+      admin:
+        suggestion:
+          attachments: Bijlagen
+          committee_members: Commissieleden
+          components: Onderdelen
+          information: Informatie
+      suggestion_creation_header:
+        back: Terug
+        fill_data: creëren
+        finish: Voltooien
+        previous_form: Begin
+        promotal_committee: Promotieraad
+        select_suggestion_type: Kiezen
+        show_similar_suggestions: Vergelijken
+        step: Stap %{current} van %{total}
+        title: Maak nieuw suggestie
+      suggestion_header:
+        suggestion_menu_item: Suggestie
+      suggestion_signature_creation_header:
+        back: Terug
+        fill_personal_data: Vul uw gegevens in
+        finish: Voltooien
+        finished: Suggestie handtekening gemaakt
+        see_steps: zie stappen
+        select_identity: Selecteer identiteit
+        sms_code: Verificatie van sms-codes
+        sms_phone_number: Mobiele telefoonnummer
+        step: Stap %{current} van %{total}
+        title: Teken %{suggestion_title}
+      suggestions:
+        suggestion:
+          check: Bekijken
+          check_and_support: Bekijk het en onderteken
+        no_suggestions_yet:
+          no_suggestions_yet: Nog geen suggesties!
