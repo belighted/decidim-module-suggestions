@@ -1,0 +1,75 @@
+<div class="suggestion-title" style="border: 1pt solid black; margin: 15pt 0; font-size: 12pt; font-weight: bold; text-transform: uppercase; text-align: center;">
+  <%= translated_attribute(current_suggestion.title) %>
+</div>
+<div class="suggestions-votes-table" style="width: 100%; display: block; border: 1pt solid black;">
+  <div class="suggestions-votes-table-header" style="background-color: lightgray; display: inline-block; width: 100%; font-size: 12pt; font-weight: bold; border-bottom: 1pt solid black;">
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.suggestion_id", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.suggestion_title", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.suggestion_start_date", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.suggestion_end_date", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.suggestion_signatures_count", scope: "decidim.admin") %>
+    </div>
+  </div>
+  <div class="suggestions-votes-table-row" style="width: 100%; display: inline-block; min-height: 33pt;">
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= current_suggestion.reference %>
+    </div>
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= translated_attribute(current_suggestion.title) %>
+    </div>
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= current_suggestion.signature_start_date %>
+    </div>
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= current_suggestion.signature_end_date %>
+    </div>
+    <div class="suggestions-votes-table-cell w20" style="width: 19%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= @votes.count %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="suggestions-votes-table" style="width: 100%; display: block; border: 1pt solid black;">
+  <div class="suggestions-votes-table-header" style="background-color: lightgray; display: inline-block; width: 100%; font-size: 12pt; font-weight: bold; border-bottom: 1pt solid black;">
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.suggestion_id", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.suggestion_title", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.name_and_surname", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.document_number", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.date_of_birth", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.postal_code", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.time_and_date", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.timestamp", scope: "decidim.admin") %>
+    </div>
+    <div class="suggestions-votes-table-cell w11" style="width: 10.8%; padding-left: 5pt; word-wrap: break-word; display: inline-block; float: left; min-height: 36pt;">
+      <%= t("models.suggestions_votes.fields.hash", scope: "decidim.admin") %>
+    </div>
+  </div>
+  <% @votes.each do |vote| %>
+    <%= cell "decidim/suggestions_votes/vote", vote %>
+  <% end %>
+</div>

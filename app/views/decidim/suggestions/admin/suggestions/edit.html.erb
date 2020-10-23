@@ -1,0 +1,69 @@
+<%= decidim_form_for @form, html: { class: "form edit_suggestion" } do |f| %>
+  <%= render partial: "form", object: f %>
+  <div class="button--double form-general-submit">
+    <%= f.submit t(".update"), class: "button" if allowed_to? :update, :suggestion, suggestion: current_suggestion %>
+
+    <% if allowed_to? :send_to_technical_validation, :suggestion, suggestion: current_suggestion %>
+      <%= link_to t(".send_to_technical_validation"),
+                  send_to_technical_validation_suggestion_path(current_suggestion),
+                  class: "button muted",
+                  data: { confirm: t(".confirm") } %>
+    <% elsif current_suggestion.created? %>
+      <%= link_to t(".send_to_technical_validation"), "#", class: "button muted disabled" %>
+    <% end %>
+
+    <% if allowed_to? :publish, :suggestion, suggestion: current_suggestion %>
+      <%= link_to t("actions.publish", scope: "decidim.admin"),
+                  publish_suggestion_path(current_suggestion),
+                  method: :post,
+                  class: "button hollow",
+                  data: { confirm: t(".confirm") } %>
+    <% end %>
+
+    <% if allowed_to? :unpublish, :suggestion, suggestion: current_suggestion %>
+      <%= link_to t("actions.unpublish", scope: "decidim.admin"),
+                  unpublish_suggestion_path(current_suggestion),
+                  method: :delete,
+                  class: "button alert",
+                  data: { confirm: t(".confirm") } %>
+    <% end %>
+
+    <% if allowed_to? :accept, :suggestion, suggestion: current_suggestion %>
+        <%= link_to t(".accept"),
+                    accept_suggestion_path(current_suggestion),
+                    method: :post,
+                    class: "button hollow",
+                    data: { confirm: t(".confirm") } %>
+    <% end %>
+
+    <% if allowed_to? :reject, :suggestion, suggestion: current_suggestion %>
+        <%= link_to t(".reject"),
+                    reject_suggestion_path(current_suggestion),
+                    method: :delete,
+                    class: "button alert",
+                    data: { confirm: t(".confirm") } %>
+    <% end %>
+
+    <% if allowed_to? :discard, :suggestion, suggestion: current_suggestion %>
+      <%= link_to t(".discard"),
+                  discard_suggestion_path(current_suggestion),
+                  method: :delete,
+                  class: "button alert",
+                  data: { confirm: t(".confirm") } %>
+    <% end %>
+
+    <% if allowed_to? :export_votes, :suggestion, suggestion: current_suggestion %>
+      <%= link_to t(".export_votes"),
+                  export_votes_suggestion_path(current_suggestion, format: :csv),
+                  class: "button alert",
+                  data: { confirm: t(".confirm") } %>
+    <% end %>
+
+    <% if allowed_to? :export_pdf_signatures, :suggestion, suggestion: current_suggestion %>
+      <%= link_to t(".export_pdf_signatures"),
+                  export_pdf_signatures_suggestion_path(current_suggestion, format: :pdf),
+                  class: "button alert",
+                  data: { confirm: t(".confirm") } %>
+    <% end %>
+   </div>
+<% end %>

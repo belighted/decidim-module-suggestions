@@ -1,0 +1,28 @@
+<% content_for :secondary_nav do %>
+  <div class="secondary-nav secondary-nav--subnav">
+    <ul>
+      <% if allowed_to?(:index, :suggestion) %>
+        <li <% if is_active_link?(decidim_admin_suggestions.suggestions_path) %> class="is-active" <% end %>>
+          <%= aria_selected_link_to I18n.t("menu.suggestions", scope: "decidim.admin"), decidim_admin_suggestions.suggestions_path %>
+        </li>
+      <% end %>
+      <% if allowed_to?(:manage, :suggestion_type) %>
+        <li <% if is_active_link?(decidim_admin_suggestions.suggestions_types_path) %> class="is-active" <% end %>>
+          <%= aria_selected_link_to I18n.t("menu.suggestions_types", scope: "decidim.admin"), decidim_admin_suggestions.suggestions_types_path %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render "layouts/decidim/admin/application" do %>
+  <div class="process-title">
+    <div class="process-title-content">
+      <%= link_to t("decidim.admin.titles.suggestions"), decidim_suggestions.suggestions_path, target: "_blank" %>
+    </div>
+  </div>
+
+  <div class="process-content">
+    <%= yield %>
+  </div>
+<% end %>

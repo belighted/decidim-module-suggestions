@@ -1,0 +1,21 @@
+<h2 class="process-title-summary">
+  <%= t ".title" %>
+</h2>
+
+<%= decidim_form_for @form,
+                     url: suggestions_type_suggestions_type_scope_path(params[:suggestions_type_id], current_suggestion_type_scope),
+                     html: { class: "form edit_suggestion_type_scope" } do |f| %>
+  <%= render partial: "form", object: f %>
+  <div class="button--double form-general-submit">
+    <%= f.submit t(".update"), class: "button" %>
+
+    <% if allowed_to? :destroy, :suggestion_type_scope, suggestion_type_scope: current_suggestion_type_scope %>
+        <%= link_to t(".destroy"), suggestions_type_suggestions_type_scope_path(params[:suggestions_type_id], current_suggestion_type_scope),
+                    method: :delete,
+                    class: "alert button",
+                    data: { confirm: t(".confirm_destroy") } %>
+    <% end %>
+
+    <%= link_to t(".back"), edit_suggestions_type_path(params[:suggestions_type_id]), class: "button" %>
+  </div>
+<% end %>
