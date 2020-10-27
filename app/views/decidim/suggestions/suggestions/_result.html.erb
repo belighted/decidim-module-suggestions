@@ -1,0 +1,26 @@
+<% if suggestion.answered? && translated_attribute(suggestion.answer).present? %>
+  <br>
+  <div class="row column">
+    <div class="callout success">
+      <h5><%= t(suggestion.state, scope: "decidim.suggestions.suggestions.result.answer_title") %>:</h5>
+      <p>
+        <% if suggestion.answer_url.present? %>
+          <a href="<%= suggestion.answer_url %>" target="_blank">
+            <%= decidim_sanitize translated_attribute suggestion.answer %>
+          </a>
+        <% else %>
+          <%= decidim_sanitize translated_attribute suggestion.answer %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
+<% if suggestion.rejected? %>
+  <br>
+  <div class="row column">
+    <div class="callout warning">
+      <h5><%= t(".suggestion_rejected_reason") %></h5>
+    </div>
+  </div>
+<% end %>

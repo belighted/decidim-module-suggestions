@@ -1,0 +1,84 @@
+<% add_decidim_meta_tags({
+  image_url: current_suggestion.type.banner_image.url,
+  description: translated_attribute(current_suggestion.description),
+  title: translated_attribute(current_suggestion.title),
+  url: suggestion_url(current_suggestion.id),
+  twitter_handler: current_organization.twitter_handler
+}) %>
+
+<%
+edit_link(
+  resource_locator(current_participatory_space).edit,
+  :update,
+  :suggestion,
+  suggestion: current_participatory_space
+)
+%>
+
+<%= participatory_space_floating_help %>
+
+<% add_decidim_page_title(translated_attribute(current_suggestion.title)) %>
+<% provide :meta_image_url, current_suggestion.type.banner_image.url %>
+<div class="row">
+  <% unless current_suggestion.online_signature_type? %>
+    <div class="column">
+      <div class="callout secondary">
+        <p>
+          <%= t ".any_vote_method" if current_suggestion.any_signature_type? %>
+          <%= t ".offline_method" if current_suggestion.offline_signature_type? %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
+    <div class="card">
+      <div class="card__content">
+        <%= render partial: "progress_bar" %>
+        <% if current_suggestion.votes_enabled? %>
+          <div id="suggestion-<%= current_suggestion.id %>-vote-cabin">
+            <%= render partial: "vote_cabin", locals: { suggestion: current_suggestion } %>
+          </div>
+        <% end %>
+        <%= render partial: "interactions" %>
+      </div>
+    </div>
+    <% if current_user %>
+      <div class="card text-center">
+        <div class="card__content">
+          <%= cell "decidim/follow_button", current_participatory_space, inline: false, large: true %>
+          <small><%= t(".follow_description") %></small>
+        </div>
+      </div>
+    <% end %>
+    <%= render partial: "decidim/shared/share_modal" %>
+    <%= embed_modal_for suggestion_suggestion_widget_url(current_suggestion, format: :js) %>
+    <%= resource_reference(current_suggestion) %>
+    <%= resource_version(current_suggestion, versions_path: suggestion_versions_path(current_suggestion)) %>
+  </div>
+
+  <div class="columns mediumlarge-8 mediumlarge-pull-4">
+    <div class="section">
+      <div class="row column">
+        <h2 class="heading2">
+          <%= translated_attribute(current_suggestion.title) %>
+        </h2>
+        <%= render partial: "author", locals: { suggestion: current_suggestion } %>
+      </div>
+      <br>
+      <div class="row column">
+        <%= render partial: "suggestion_badge", locals: { suggestion: current_suggestion } %>
+        <%= decidim_sanitize translated_attribute(current_suggestion.description) %>
+        <%= render partial: "tags", locals: { resource: current_suggestion } %>
+      </div>
+
+      <%= render partial: "result", locals: { suggestion: current_suggestion } %>
+    </div>
+
+    <%= attachments_for current_suggestion %>
+
+    <%= render partial: "supports", locals: { suggestion: current_suggestion } %>
+  </div>
+</div>
+
+<%= comments_for current_suggestion if current_suggestion.published? %>

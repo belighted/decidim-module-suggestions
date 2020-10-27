@@ -1,0 +1,32 @@
+<%
+edit_link(
+  decidim_admin_suggestions.suggestions_path,
+  :list,
+  :suggestion
+)
+%>
+
+<% provide :meta_title, t("suggestions.index.title", scope: "decidim") %>
+
+<%= participatory_space_wrapper do %>
+  <div class="row columns">
+    <div class="title-action">
+      <%= render partial: "index_header" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="columns mediumlarge-4 large-3">
+      <%= render partial: "filters_small_view" %>
+      <div class="card card--secondary show-for-mediumlarge">
+        <%= render partial: "filters" %>
+      </div>
+    </div>
+    <div id="suggestions" class="columns mediumlarge-8 large-9">
+      <%= render partial: "suggestions" %>
+    </div>
+  </div>
+<% end %>
+
+<%= javascript_include_tag "decidim/filters" %>
+<%#= javascript_include_tag "decidim/results_listing" %>

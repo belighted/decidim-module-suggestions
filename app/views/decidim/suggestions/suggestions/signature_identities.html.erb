@@ -1,0 +1,42 @@
+<div class="reveal__header">
+  <h1 class="reveal__title"><%= t ".select_identity" %></h1>
+</div>
+
+<%= render partial: "decidim/suggestions/suggestions/vote_button",
+           locals: {
+               suggestion: current_suggestion,
+               vote_label: current_user.name,
+               unvote_label: current_user.name,
+               verification_label: current_user.name,
+               steps: signature_has_steps?
+           } unless current_suggestion.offline_signature_type? %>
+
+<% Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.each do |g| %>
+  <br>
+  <% if @voted_groups.include? g.id %>
+    <%= button_to(
+      g.name,
+      suggestion_suggestion_vote_path(suggestion_slug: current_suggestion.slug, group_id: g.id),
+      method: :delete,
+      remote: true,
+      data: { disable: true },
+      class: "button expanded light button--sc success"
+    ) %>
+  <% else %>
+    <% if signature_has_steps? %>
+      <%= link_to(
+        g.name,
+        suggestion_suggestion_signatures_path(suggestion_slug: current_suggestion.slug, group_id: g.id),
+        class: "button expanded light button--sc"
+      ) %>
+    <% else %>
+      <%= button_to(
+        g.name,
+        suggestion_suggestion_signatures_path(suggestion_slug: current_suggestion.slug, group_id: g.id),
+        remote: true,
+        data: { disable: true },
+        class: "button expanded light button--sc"
+      ) %>
+    <% end %>
+  <% end %>
+<% end %>

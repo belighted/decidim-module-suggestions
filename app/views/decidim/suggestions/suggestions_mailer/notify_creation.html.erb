@@ -1,0 +1,22 @@
+<p>
+<%= t "decidim.suggestions.suggestions_mailer.creation_subject", title: translated_attribute(@suggestion.title) %>.
+<%= link_to t("decidim.suggestions.suggestions_mailer.more_information"), decidim.page_url("suggestions", host: @organization.host) %>
+</p>
+
+<% if @suggestion.created_by_individual? %>
+    <p>
+      <%= t "decidim.suggestions.suggestions_mailer.promotal_committee_help",
+           member_count: Decidim::Suggestions.minimum_committee_members %>
+    </p>
+    <p>
+      <%= link_to decidim_suggestions.new_suggestion_committee_request_url(@suggestion, host: @organization.host),
+                  decidim_suggestions.new_suggestion_committee_request_url(@suggestion, host: @organization.host) %>
+    </p>
+<% end %>
+<br><br>
+
+<p>
+  <%= t("check_suggestion_details", scope: "decidim.suggestions.suggestions_mailer.suggestion_link") %>
+  <%= link_to t("here",  scope: "decidim.suggestions.suggestions_mailer.suggestion_link"),
+              decidim_admin_suggestions.suggestion_url(@suggestion, host: @organization.host) %>
+</p>

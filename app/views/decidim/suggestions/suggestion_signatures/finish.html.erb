@@ -1,0 +1,17 @@
+<div class="callout secondary mb-sm">
+  <p>
+    <%= t("create.success_html",
+          scope: "decidim.suggestions.suggestion_votes",
+          title: translated_attribute(current_suggestion.title)) %>
+  </p>
+</div>
+<h2 class="section-heading"><%= t("finished", scope: "layouts.decidim.suggestion_signature_creation_header") %></h2>
+
+<%= render partial: "wizard_steps" %>
+
+<div class="card">
+  <br>
+  <div class="column actions">
+    <%= link_to t(".back_to_suggestion"), suggestion_path(current_suggestion), class: "button white-button expanded" %>
+  </div>
+</div>

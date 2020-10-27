@@ -1,0 +1,21 @@
+(function () {
+  'use strict';
+
+  var $suggestionVotesCount = $('#suggestion-<%= current_suggestion.id %>-votes-count'),
+      userIdentitiesDialog = $('#user-identities'),
+      refreshUrl;
+
+  $suggestionVotesCount.html('<%= j(render partial: "decidim/suggestions/suggestions/progress_bar", locals: { suggestion: current_suggestion }) %>');
+
+  // Update the identities dialog, if exists.
+  if (userIdentitiesDialog.length) {
+    refreshUrl = userIdentitiesDialog.data('refresh-url');
+
+    $.ajax(refreshUrl).done(function(response){
+      userIdentitiesDialog.html(response);
+    });
+  } else {
+    var $suggestionVoteButton = $('#suggestion-<%= current_suggestion.id %>-vote-cabin');
+    $suggestionVoteButton.html('<%= j(render partial: "decidim/suggestions/suggestions/vote_cabin", locals: { suggestion: current_suggestion }) %>');
+  }
+}());

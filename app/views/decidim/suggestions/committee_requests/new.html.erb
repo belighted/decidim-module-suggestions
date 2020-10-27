@@ -1,0 +1,31 @@
+<% add_decidim_meta_tags({
+                             image_url: current_suggestion.type.banner_image.url,
+                             description: translated_attribute(current_suggestion.description),
+                             title: translated_attribute(current_suggestion.title),
+                             url: suggestion_url(current_suggestion.id),
+                             twitter_handler: current_organization.twitter_handler
+                         }) %>
+
+<% add_decidim_page_title(translated_attribute(current_suggestion.title)) %>
+<% provide :meta_image_url, current_suggestion.type.banner_image.url %>
+
+<br><br>
+<div class="row column">
+  <h2 class="heading2"><%= translated_attribute(current_suggestion.title) %></h2>
+  <%= render partial: "decidim/suggestions/suggestions/author", locals: { suggestion: current_suggestion } %>
+</div>
+
+<div class="row">
+  <div class="columns large-12">
+    <div class="section">
+      <%= decidim_sanitize translated_attribute(current_suggestion.description) %>
+    </div>
+
+    <div class="section">
+      <p><%= t ".help_text" %></p>
+      <%= logged_link_to t(".continue"),
+                         spawn_suggestion_committee_requests_path(current_suggestion),
+                         class: "title-action__action button small hollow" %>
+    </div>
+  </div>
+</div>

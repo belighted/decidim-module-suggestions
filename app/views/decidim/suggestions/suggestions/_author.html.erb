@@ -1,0 +1,35 @@
+<div class="author-data suggestion-authors">
+  <div class="author-data__main ">
+    <div class="author author--inline">
+      <span class="author__avatar author__avatar--small">
+        <%= image_tag suggestion.author_avatar_url, alt: t("avatar", scope: "activemodel.attributes.group") %>
+      </span>
+      <span class="author__name">
+        <% if suggestion.author.deleted? %>
+          <span class="label label--small label--basic">
+            <%= t(".deleted") %>
+          </span>
+        <% else %>
+          <%= suggestion.author_name %>
+        <% end %>
+      </span>
+    </div>
+
+    <% suggestion.committee_members.excluding_author.approved.each do |m| %>
+      <% unless m.user.deleted? %>
+        <div class="author author--inline">
+          <span class="author__avatar author__avatar--small">
+            <%= image_tag m.user.avatar_url %>
+          </span>
+          <span class="author__name">
+            <%= m.user.name %>
+          </span>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="publish-date">
+      <%= l suggestion.published_at || suggestion.created_at, format: "%d/%m/%Y" %>
+    </div>
+  </div>
+</div>

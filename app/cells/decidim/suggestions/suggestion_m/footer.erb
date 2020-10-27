@@ -1,0 +1,28 @@
+<div class="card__footer card__footer--spaces">
+  <div class="card__support">
+    <% if model.published? %>
+      <div class="card__support__data">
+        <%= cell(
+          "decidim/progress_bar",
+          model.supports_count,
+          total: model.scoped_type.supports_required,
+          units_name: "decidim.suggestions.suggestions.signatures_count",
+          element_id: "suggestion-#{model.id}-signatures-count",
+          small: true
+        ) %>
+      </div>
+    <% else %>
+      <div class="card__support__data"></div>
+    <% end %>
+
+    <% if model.closed? || model.offline_signature_type? %>
+      <%= link_to t("suggestions.suggestion.check", scope: "layouts.decidim"),
+                  resource_path,
+                  class: "card__button button button--sc small light secondary" %>
+    <% else %>
+      <%= link_to t("suggestions.suggestion.check_and_support", scope: "layouts.decidim"),
+                  resource_path,
+                  class: "card__button button button--sc small light secondary" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<section class="wrapper-home home-section">
+  <div class="row" id="highlighted-suggestions">
+    <h3 class="section-heading"><%= t("active_suggestions", scope: i18n_scope) %></h3>
+    <div class="row collapse">
+      <div class="row small-up-1 smallmedium-up-2 mediumlarge-up-3 large-up-4 card-grid">
+        <% highlighted_suggestions.each do |suggestion| %>
+          <div class="column">
+            <div class="card card--suggestion card--mini">
+              <%= link_to decidim_suggestions.suggestion_path(suggestion), class: "card__link" do %>
+                <span class="show-for-sr"><%= translated_attribute suggestion.title %></span>
+              <% end %>
+              <div class="card__content">
+                <%= link_to decidim_suggestions.suggestion_path(suggestion), class: "card__link" do %>
+                  <span class="card__title"><%= decidim_html_escape(translated_attribute(suggestion.title)) %></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="see-all-suggestions">
+    <div class="columns small-centered small-12 smallmedium-8 medium-6 large-4">
+      <%= link_to t("see_all_suggestions", scope: i18n_scope), decidim_suggestions.suggestions_path,
+                  class: "button expanded hollow button--sc home-section__cta" %>
+    </div>
+  </div>
+</section>

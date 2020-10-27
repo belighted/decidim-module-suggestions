@@ -1,0 +1,5 @@
+<% if suggestion.rejected? || suggestion.accepted? %>
+  <span class="<%= state_badge_css_class(suggestion) %> label suggestion-status">
+    <%= humanize_state suggestion %>
+  </span>
+<% end %>

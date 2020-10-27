@@ -1,0 +1,41 @@
+<% if allowed_to? :vote, :suggestion, suggestion: suggestion %>
+  <% if steps %>
+    <%= link_to(
+      vote_label,
+      suggestion_suggestion_signatures_path(suggestion_slug: current_suggestion.slug),
+      class: "button expanded light button--sc"
+    ) %>
+  <% else %>
+    <%= button_to(
+      vote_label,
+      suggestion_suggestion_signatures_path(suggestion_slug: current_suggestion.slug),
+      remote: true,
+      data: { disable: true },
+      class: "button expanded light button--sc"
+    ) %>
+  <% end %>
+<% else %>
+  <% if suggestion.voted_by?(current_user) %>
+    <% if allowed_to? :unvote, :suggestion, suggestion: suggestion %>
+      <%= button_to(
+        suggestion_suggestion_vote_path(suggestion_slug: current_suggestion.slug),
+        method: :delete,
+        remote: true,
+        data: { disable: true },
+        class: "button expanded light button--sc success"
+      ) do %>
+        <%= icon("check", class: "icon--small") %>
+        <%= unvote_label %>
+      <% end %>
+    <% else %>
+      <button class='button expanded button--sc success light disabled' disabled>
+        <%= icon("check", class: "icon--small") %>
+        <%= unvote_label %>
+      </button>
+    <% end %>
+  <% else %>
+    <%= authorized_vote_modal_button(suggestion, remote: true, class: "button expanded light button--sc") do %>
+      <%= verification_label %>
+    <% end %>
+  <% end %>
+<% end %>

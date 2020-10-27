@@ -1,0 +1,11 @@
+<div class="row collapse">
+  <h1 id="suggestions-count" class="title-action__title section-heading">
+    <%= render partial: "count" %>
+  </h1>
+  <% if allowed_to? :create, :suggestion %>
+    <%= link_to create_suggestion_path(:select_suggestion_type), class: "title-action__action button small" do %>
+        <%= t(".new_suggestion") %>
+        <%= icon "plus", role: "img", "aria-hidden": true %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+var $suggestions = $('#suggestions');
+var $suggestionsCount = $('#suggestions-count');
+var $orderFilterInput = $('.order_filter');
+
+$suggestions.html('<%= j(render partial: "suggestions") %>');
+$suggestionsCount.html('<%= j(render partial: "count") %>');
+$orderFilterInput.val('<%= order %>');
+
+var $dropdownMenu = $('.dropdown.menu', $suggestions);
+$dropdownMenu.foundation();
