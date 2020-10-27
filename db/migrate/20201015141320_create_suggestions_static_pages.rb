@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateStaticPages < ActiveRecord::Migration[5.1]
+class CreateSuggestionsStaticPages < ActiveRecord::Migration[5.1]
   class Organization < ApplicationRecord
     self.table_name = :decidim_organizations
   end
