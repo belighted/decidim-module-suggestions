@@ -9,7 +9,7 @@ class CreateDecidimSuggestionsTypes < ActiveRecord::Migration[5.1]
       t.integer :decidim_organization_id,
                 foreign_key: true,
                 index: {
-                  name: "index_decidim_suggestions_on_decidim_organization_id"
+                  name: "index_decidim_suggestions_types_on_decidim_organization_id"
                 }
 
       t.timestamps
