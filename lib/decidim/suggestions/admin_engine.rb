@@ -87,7 +87,7 @@ module Decidim
         Decidim.menu :admin_menu do |menu|
           menu.item I18n.t("menu.suggestions", scope: "decidim.admin"),
                     decidim_admin_suggestions.suggestions_path,
-                    icon_name: "chat",
+                    icon_name: "task",
                     position: 3.7,
                     active: :inclusive,
                     if: allowed_to?(:enter, :space_area, space_name: :suggestions)

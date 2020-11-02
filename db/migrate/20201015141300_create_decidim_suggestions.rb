@@ -32,7 +32,7 @@ class CreateDecidimSuggestions < ActiveRecord::Migration[5.1]
       t.integer :suggestion_votes_count, null: false, default: 0
 
       t.integer :decidim_user_group_id, index: true
-      t.integer :hashtag, unique: true
+      t.string :hashtag, unique: true
 
       t.integer :suggestion_supports_count, null: false, default: 0
 

@@ -21,7 +21,12 @@
       <table class="table-list">
         <thead>
         <tr>
-          <th><%= t "user", scope: "activemodel.attributes.suggestions_committee_member" %></th>
+          <th>
+            <%= t "user", scope: "activemodel.attributes.suggestions_committee_member" %>
+            <% if current_suggestion.minimum_committee_members > 0 %>
+              (<%= current_suggestion.committee_members.count %> / <%= current_suggestion.minimum_committee_members %>)
+            <% end %>
+          </th>
           <th></th>
         </tr>
         </thead>
