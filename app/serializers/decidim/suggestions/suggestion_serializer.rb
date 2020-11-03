@@ -3,7 +3,6 @@
 module Decidim
   module Suggestions
     class SuggestionSerializer < Decidim::Exporters::Serializer
-      # Serializes an inititative
       def serialize
         {
           id: resource.id,
