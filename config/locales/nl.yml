@@ -106,7 +106,7 @@ nl:
             suggestion_id: Suggestie ID
             suggestion_signatures_count: Aantal handtekeningen
             suggestion_start_date: Begindatum
-            suggestion_title: Titel van het suggestie
+            suggestion_title: Titel van de suggestie
             name_and_surname: Naam en achternaam
             postal_code: Postcode
             time_and_date: Tijd en datum
@@ -118,28 +118,28 @@ nl:
       suggestions:
         admin:
           suggestion_sent_to_technical_validation:
-            email_intro: Het suggestie "%{resource_title}" is verzonden naar technische validatie. Bekijk het via <a href="%{admin_suggestion_url}">het beheerpaneel</a>
+            email_intro: De suggestie "%{resource_title}" is verzonden naar technische validatie. Bekijk het via <a href="%{admin_suggestion_url}">het beheerpaneel</a>
             email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
             email_subject: Suggestie "%{resource_title}" werd verzonden naar technische validatie.
-            notification_title: Het suggestie "%{resource_title}" is verzonden naar technische validatie. Bekijk het via <a href="%{admin_suggestion_path}">het beheerpaneel</a>
+            notification_title: De suggestie "%{resource_title}" is verzonden naar technische validatie. Bekijk het via <a href="%{admin_suggestion_path}">het beheerpaneel</a>
         suggestion_extended:
           email_intro: De einddatum voor de handtekeningen van suggestie %{resource_title} is verlengd!
           email_outro: U hebt deze melding ontvangen omdat u %{resource_title} volgt. Je kunt de meldingen stoppen door de vorige link te volgen.
-          email_subject: Einddatum handtekeningen voor het suggestie verlengd!
+          email_subject: Einddatum handtekeningen voor de suggestie verlengd!
           notification_title: De einddatum van de ondertekening van het <a href="%{resource_path}">%{resource_title}</a> suggestie is verlengd.
         milestone_completed:
           affected_user:
             email_intro: Uw suggestie %{resource_title} heeft %{percentage}% handtekeningen bereikt!
-            email_outro: U hebt deze melding ontvangen omdat u de auteur bent van het suggestie %{resource_title}.
+            email_outro: U hebt deze melding ontvangen omdat u de auteur bent van de suggestie %{resource_title}.
             email_subject: Nieuwe mijlpaal voltooid!
             notification_title: Uw <a href="%{resource_path}">%{resource_title}</a> suggestie heeft %{percentage}% handtekeningen bereikt.
           follower:
-            email_intro: Het suggestie %{resource_title} heeft %{percentage}% handtekeningen bereikt!
+            email_intro: De suggestie %{resource_title} heeft %{percentage}% handtekeningen bereikt!
             email_outro: U hebt deze melding ontvangen omdat u %{resource_title} volgt. Je kunt de meldingen stoppen door de vorige link te volgen.
             email_subject: Nieuwe mijlpaal voltooid!
             notification_title: Het <a href="%{resource_path}">%{resource_title}</a> suggestie heeft %{percentage}% handtekeningen behaald.
         support_threshold_reached:
-          email_intro: Het suggestie %{resource_title} heeft de steundrempel bereikt
+          email_intro: De suggestie %{resource_title} heeft de steundrempel bereikt
           email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
           email_subject: Ondersteuningsdrempel bereikt
           notification_title: Het <a href="%{resource_path}">%{resource_title}</a> suggestie heeft de support drempel bereikt
@@ -193,12 +193,12 @@ nl:
           edit:
             accept: Accepteer suggestie
             confirm: Weet je het zeker?
-            discard: Gooi het suggestie weg
+            discard: Gooi de suggestie weg
             export_pdf_signatures: PDF van handtekeningen exporteren
             export_votes: Handtekeningen exporteren
             reject: Verwerp suggestie
             send_to_technical_validation: Stuur naar technische validatie
-            success: Het suggestie is verzonden naar technische validatie
+            success: De suggestie is verzonden naar technische validatie
             update: Bijwerken
           form:
             title: Algemene informatie
@@ -226,7 +226,7 @@ nl:
             back: Terug
             confirm_destroy: Weet je het zeker?
             destroy: Verwijder
-            title: Bewerk het suggestietype bereik
+            title: Bewerk de suggestietype bereik
             update: Bijwerken
           new:
             back: Terug
@@ -240,7 +240,7 @@ nl:
             error: er is een fout opgetreden
             success: Een nieuw suggestietype is succesvol gemaakt
           destroy:
-            success: Het suggestietype is succesvol verwijderd
+            success: De suggestietype is succesvol verwijderd
           edit:
             confirm_destroy: Weet je het zeker?
             destroy: Verwijder
@@ -248,19 +248,19 @@ nl:
           form:
             title: Algemene informatie
           suggestion_type_scopes:
-            title: Scopes voor het suggestietype
+            title: Scopes voor de suggestietype
           new:
             create: creëren
             title: Nieuw suggestiestype
           update:
             error: Er is een fout opgetreden
-            success: Het suggestietype is succesvol bijgewerkt
+            success: De suggestietype is succesvol bijgewerkt
       admin_log:
         suggestion:
-          publish: "%{user_name} heeft het suggestie %{resource_name} gepubliceerd"
-          send_to_technical_validation: "%{user_name} heeft het suggestie %{resource_name} verzonden naar technische validatie"
-          unpublish: "%{user_name} heeft het suggestie %{resource_name} verwijderd"
-          update: "%{user_name} heeft het suggestie %{resource_name} bijgewerkt"
+          publish: "%{user_name} heeft de suggestie %{resource_name} gepubliceerd"
+          send_to_technical_validation: "%{user_name} heeft de suggestie %{resource_name} verzonden naar technische validatie"
+          unpublish: "%{user_name} heeft de suggestie %{resource_name} verwijderd"
+          update: "%{user_name} heeft de suggestie %{resource_name} bijgewerkt"
       admin_states:
         accepted: Genoeg handtekeningen
         created: gemaakt
@@ -287,7 +287,7 @@ nl:
           continue: Doorgaan met
           help_text: U staat op het punt lid te worden van de promotieraad van dit suggestie
         spawn:
-          success: Je verzoek is verzonden aan de auteur van het suggestie.
+          success: Je verzoek is verzonden aan de auteur van de suggestie.
       content_blocks:
         highlighted_suggestions:
           name: Gemarkeerde suggesties
@@ -295,7 +295,7 @@ nl:
         fill_data:
           back: Terug
           continue: Doorgaan met
-          fill_data_help: "<ul> <li>Herbekijk de inhoud van je suggestie. Is uw titel gemakkelijk te begrijpen? Is het doel van uw suggestie duidelijk?</li> <li>Je moet het type handtekening kiezen. Persoonlijk, online of een combinatie van beide</li> <li>Wat is de geografische reikwijdte van het suggestie? Stad, streek?</li> </ul>"
+          fill_data_help: "<ul> <li>Herbekijk de inhoud van je suggestie. Is uw titel gemakkelijk te begrijpen? Is het doel van uw suggestie duidelijk?</li> <li>Je moet het type handtekening kiezen. Persoonlijk, online of een combinatie van beide</li> <li>Wat is de geografische reikwijdte van de suggestie? Stad, streek?</li> </ul>"
           suggestion_type: Suggestietype
           more_information: "(Meer informatie)"
           select_area: Selecteer een gebied
@@ -313,13 +313,13 @@ nl:
           access_reminder: Vergeet niet dat je altijd toegang hebt tot je suggesties via het gebruikersmenu.
           help_for_organizations: Als u een vereniging bent, moet u de notulen van het directiecomité uploaden van alle organisaties die de promotieraad vormen
           help_in_person_signatures: Als je ervoor hebt gekozen de handtekeningen persoonlijk te verzamelen of in combinatie met online, moet je de vereiste informatie uploaden.
-          help_text: Vergeet niet dat om het suggestie goed te verwerken, u toegang moet hebben tot het administratiepaneel, waar u het gebruikersmenu kunt vinden, de vereiste informatie kunt uploaden en deze voor verwerking kunt verzenden.
+          help_text: Vergeet niet dat om de suggestie goed te verwerken, u toegang moet hebben tot het administratiepaneel, waar u het gebruikersmenu kunt vinden, de vereiste informatie kunt uploaden en deze voor verwerking kunt verzenden.
           suggestions_page_link: Je kunt al deze informatie op de %{link} opzoeken om je te informeren over suggesties.
           page: pagina
         previous_form:
           back: Terug
           continue: Doorgaan met
-          help: Waaruit bestaat het suggestie? Noteer de titel en beschrijving. We adviseren een korte en bondige titel en een beschrijving gericht op de voorgestelde oplossing.
+          help: Waaruit bestaat de suggestie? Noteer de titel en beschrijving. We adviseren een korte en bondige titel en een beschrijving gericht op de voorgestelde oplossing.
           more_information: "(Meer informatie)"
         promotal_committee:
           back: Terug
@@ -359,7 +359,7 @@ nl:
             day: Dag
             month: Maand
             year: Jaar
-          help: Vul alstublieft de volgende velden in met uw persoonlijke gegevens om het suggestie te ondertekenen
+          help: Vul alstublieft de volgende velden in met uw persoonlijke gegevens om de suggestie te ondertekenen
         finish:
           back_to_suggestion: Terug naar suggestie
         sms_code:
@@ -370,9 +370,9 @@ nl:
           help: Vul het formulier in met uw geverifieerde telefoonnummer om uw verificatiecode aan te vragen
       suggestion_votes:
         create:
-          error: Er zijn fouten opgetreden bij het ondertekenen van het suggestie.
-          invalid: De gegevens die worden verstrekt om het suggestie te ondertekenen zijn niet geldig
-          success_html: Proficiat! Het suggestie <strong> %{title}</strong> is correct ondertekend
+          error: Er zijn fouten opgetreden bij het ondertekenen van de suggestie.
+          invalid: De gegevens die worden verstrekt om de suggestie te ondertekenen zijn niet geldig
+          success_html: Proficiat! De suggestie <strong> %{title}</strong> is correct ondertekend
         personal_data:
           invalid: Persoonlijke gegevens komen niet overeen met gegevens die zijn verstrekt voor autorisatie.
         sms_code:
@@ -441,7 +441,7 @@ nl:
         vote_cabin:
           already_voted: Al getekend
           supports_required: "%{total_supports} handtekeningen vereist"
-          verification_required: Verifieer uw account om het suggestie te ondertekenen
+          verification_required: Verifieer uw account om de suggestie te ondertekenen
           vote: Teken
           votes_blocked: Ondertekenen uitgeschakeld
         votes_count:
@@ -453,14 +453,14 @@ nl:
       suggestions_mailer:
         creation_subject: Je burgersuggestie '%{title}' is gemaakt
         suggestion_link:
-          check_suggestion_details: Je kan de details van het suggestie bekijken
+          check_suggestion_details: Je kan de details van de suggestie bekijken
           here: hier
         more_information: Hier heb je meer informatie over het proces voor het maken van suggesties.
-        progress_report_body_for: Het suggestie %{title} heeft %{percentage}% van de vereiste stemmen behaald.
-        progress_report_for: 'Samenvatting over het suggestie: %{title}'
+        progress_report_body_for: De suggestie %{title} heeft %{percentage}% van de vereiste stemmen behaald.
+        progress_report_for: 'Samenvatting over de suggestie: %{title}'
         promotal_committee_help: Vergeet niet dat u ten minste %{member_count} personen moet uitnodigen voor een promotieraad. Stuur de volgende link door om mensen uit te nodigen voor de promotieraad
-        status_change_body_for: 'Het suggestie %{title} heeft de status gewijzigd in: %{state}'
-        status_change_for: Het suggestie %{title} is van status veranderd
+        status_change_body_for: 'De suggestie %{title} heeft de status gewijzigd in: %{state}'
+        status_change_for: De suggestie %{title} is van status veranderd
       last_activity:
         new_suggestion: Nieuw suggestie
       pages:
@@ -482,7 +482,7 @@ nl:
       unavailable_scope: Niet beschikbaar bereik
       versions:
         shared:
-          back_to_resource: Ga terug naar het suggestie
+          back_to_resource: Ga terug naar de suggestie
     menu:
       suggestions: suggesties
     resources:

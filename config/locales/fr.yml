@@ -36,7 +36,7 @@ fr:
         extra_fields_legal_information: Informations juridiques sur la collecte de données personnelles
         minimum_committee_members: Minimum de membres du comité
         online_signature_enabled: Signature en ligne activée
-        promoting_committee_enabled: Activer les comités de promotion sur ce type d'suggestion (témoin. s dont l'invitation par l'auteur est obligatoire pour la validation de l'suggestion si cette fonctionnalité est activée)
+        promoting_committee_enabled: Activer les comités de promotion sur ce type d'suggestion (témoin. s dont l'invitation par l'auteur est obligatoire pour la validation de la suggestion si cette fonctionnalité est activée)
         title: Titre
         undo_online_signatures_enabled: Autoriser les utilisateurs à annuler leurs signatures en ligne
         validate_sms_code_on_votes: Ajouter une étape de validation du code SMS au processus de signature
@@ -106,7 +106,7 @@ fr:
             suggestion_id: ID d'suggestion
             suggestion_signatures_count: Nombre de signatures
             suggestion_start_date: Date de début
-            suggestion_title: Titre de l'suggestion
+            suggestion_title: Titre de la suggestion
             name_and_surname: Nom et surnom
             postal_code: Code postal
             time_and_date: Heure et date
@@ -118,31 +118,31 @@ fr:
       suggestions:
         admin:
           suggestion_sent_to_technical_validation:
-            email_intro: L'suggestion "%{resource_title}" a été envoyée pour validation technique. Consultez-la sur <a href="%{admin_suggestion_url}">le panneau d'administration,</a>
+            email_intro: La suggestion "%{resource_title}" a été envoyée pour validation technique. Consultez-la sur <a href="%{admin_suggestion_url}">le panneau d'administration,</a>
             email_outro: Vous avez reçu cette notification parce que vous êtes un administrateur de la plateforme.
-            email_subject: L'suggestion "%{resource_title}" a été envoyée pour validation technique.
-            notification_title: L'suggestion "%{resource_title}" a été envoyée pour validation technique. Consultez-la sur <a href="%{admin_suggestion_path}">le panneau d'administration,</a>
+            email_subject: La suggestion "%{resource_title}" a été envoyée pour validation technique.
+            notification_title: La suggestion "%{resource_title}" a été envoyée pour validation technique. Consultez-la sur <a href="%{admin_suggestion_path}">le panneau d'administration,</a>
         suggestion_extended:
-          email_intro: La date de fin du recueil des signatures pour l'suggestion %{resource_title} a été prolongée !
+          email_intro: La date de fin du recueil des signatures pour la suggestion %{resource_title} a été prolongée !
           email_outro: Vous avez reçu cette notification parce que vous suivez %{resource_title}. Vous pouvez arrêter de recevoir des notifications à partir du lien précédent.
-          email_subject: La date de fin du recueil des signatures pour l'suggestion est prolongée !
-          notification_title: La date de fin de recueil des signatures pour l'suggestion <a href="%{resource_path}">%{resource_title}</a> a été prolongée.
+          email_subject: La date de fin du recueil des signatures pour la suggestion est prolongée !
+          notification_title: La date de fin de recueil des signatures pour la suggestion <a href="%{resource_path}">%{resource_title}</a> a été prolongée.
         milestone_completed:
           affected_user:
             email_intro: Votre suggestion %{resource_title} a atteint %{percentage}% de signatures!
-            email_outro: Vous avez reçu cette notification car vous êtes l'auteur de l'suggestion %{resource_title}.
+            email_outro: Vous avez reçu cette notification car vous êtes l'auteur de la suggestion %{resource_title}.
             email_subject: Nouvelle étape franchie !
             notification_title: Votre suggestion <a href="%{resource_path}">%{resource_title}</a> a atteint les %{percentage}% de signatures.
           follower:
-            email_intro: L'suggestion %{resource_title} a atteint %{percentage}% des signatures requises !
+            email_intro: La suggestion %{resource_title} a atteint %{percentage}% des signatures requises !
             email_outro: Vous avez reçu cette notification parce que vous suivez %{resource_title}. Vous pouvez cesser de recevoir des notifications en suivant le lien précédent.
             email_subject: Nouvelle étape franchie !
-            notification_title: L'suggestion <a href="%{resource_path}">%{resource_title}</a> a atteint les %{percentage}% de signatures.
+            notification_title: La suggestion <a href="%{resource_path}">%{resource_title}</a> a atteint les %{percentage}% de signatures.
         support_threshold_reached:
-          email_intro: L'suggestion %{resource_title} a atteint le seuil de soutiens
+          email_intro: La suggestion %{resource_title} a atteint le seuil de soutiens
           email_outro: Vous avez reçu cette notification parce que vous êtes un administrateur de la plateforme.
           email_subject: Seuil de soutiens atteint
-          notification_title: L'suggestion <a href="%{resource_path}">%{resource_title}</a> a atteint le seuil de soutiens
+          notification_title: La suggestion <a href="%{resource_path}">%{resource_title}</a> a atteint le seuil de soutiens
     gamification:
       badges:
         suggestions:
@@ -191,14 +191,14 @@ fr:
           suggestions: Suggestions
         suggestions:
           edit:
-            accept: Accepter l'suggestion
+            accept: Accepter la suggestion
             confirm: Êtes-vous sûr(e) ?
-            discard: Dépublier l'suggestion
+            discard: Dépublier la suggestion
             export_pdf_signatures: Exporter PDF des signatures
             export_votes: Exporter la liste des votes
-            reject: Rejeter l'suggestion
+            reject: Rejeter la suggestion
             send_to_technical_validation: Envoyer à la validation technique
-            success: L'suggestion a été envoyée à la validation technique
+            success: La suggestion a été envoyée à la validation technique
             update: Mettre à jour
           form:
             title: Informations générales
@@ -215,7 +215,7 @@ fr:
             print: Impression
           update:
             error: Une erreur est survenue
-            success: L'suggestion a été mise à jour avec succès
+            success: La suggestion a été mise à jour avec succès
         suggestions_type_scopes:
           create:
             error: Une erreur s'est produite
@@ -257,10 +257,10 @@ fr:
             success: Le type d'suggestion a été mis à jour avec succès
       admin_log:
         suggestion:
-          publish: "%{user_name} a publié l'suggestion %{resource_name}"
-          send_to_technical_validation: "%{user_name} a envoyé l'suggestion %{resource_name} à la validation technique"
-          unpublish: "%{user_name} a dépublié l'suggestion %{resource_name}"
-          update: "%{user_name} a mis à jour l'suggestion %{resource_name}"
+          publish: "%{user_name} a publié la suggestion %{resource_name}"
+          send_to_technical_validation: "%{user_name} a envoyé la suggestion %{resource_name} à la validation technique"
+          unpublish: "%{user_name} a dépublié la suggestion %{resource_name}"
+          update: "%{user_name} a mis à jour la suggestion %{resource_name}"
       admin_states:
         accepted: Assez de signatures
         created: Créée
@@ -287,7 +287,7 @@ fr:
           continue: Continuer
           help_text: Vous êtes sur le point de demander à devenir membre du Comité de promotion de cette suggestion
         spawn:
-          success: Votre demande a été envoyée à l'auteur de l'suggestion.
+          success: Votre demande a été envoyée à l'auteur de la suggestion.
       content_blocks:
         highlighted_suggestions:
           name: Suggestions mises en avant
@@ -295,7 +295,7 @@ fr:
         fill_data:
           back: Retour
           continue: Continuer
-          fill_data_help: "<ul> <li>Vérifier le contenu de votre suggestion. Votre titre est-il facile à comprendre ? L'objectif de votre pétition est-il clair ?</li> <li>Vous devez choisir le type de recueil des signatures : en présentiel, en ligne ou une combinaison des deux</li> <li>Quelle est le secteur géographique de l'suggestion ? Ville, arrondissement, quartier ?</li> </ul>"
+          fill_data_help: "<ul> <li>Vérifier le contenu de votre suggestion. Votre titre est-il facile à comprendre ? L'objectif de votre pétition est-il clair ?</li> <li>Vous devez choisir le type de recueil des signatures : en présentiel, en ligne ou une combinaison des deux</li> <li>Quelle est le secteur géographique de la suggestion ? Ville, arrondissement, quartier ?</li> </ul>"
           suggestion_type: Type d'suggestion
           more_information: "(Plus d'informations)"
           select_area: Sélectionnez une zone
@@ -313,13 +313,13 @@ fr:
           access_reminder: Rappelez-vous que vous serez toujours en mesure d'accéder à vos suggestions via le menu utilisateur.
           help_for_organizations: Si vous êtes une association, vous devrez télécharger les procès-verbaux du conseil d'administration de toutes les organisations qui constituent le Comité de promotion
           help_in_person_signatures: Si vous avez choisi de recueillir les signatures en présentiel ou de façon combinée, vous devrez télécharger les informations requises.
-          help_text: N'oubliez pas que pour valider correctement l'suggestion, vous devez accéder au panneau d'administration dans lequel vous trouverez le menu utilisateur, télécharger les informations requises et l'envoyer pour validation technique.
+          help_text: N'oubliez pas que pour valider correctement la suggestion, vous devez accéder au panneau d'administration dans lequel vous trouverez le menu utilisateur, télécharger les informations requises et l'envoyer pour validation technique.
           suggestions_page_link: Vous pouvez consulter toutes ces informations sur la %{link} dédié à l'information sur les suggestions.
           page: page
         previous_form:
           back: Retour
           continue: Continuer
-          help: En quoi consiste l'suggestion ? Saisissez son titre et sa description. Nous recommandons un titre court et synthétique et une description axée sur la solution proposée.
+          help: En quoi consiste la suggestion ? Saisissez son titre et sa description. Nous recommandons un titre court et synthétique et une description axée sur la solution proposée.
           more_information: "(Plus d'informations)"
         promotal_committee:
           back: Retour
@@ -344,12 +344,12 @@ fr:
           email_intro: "%{author_name} %{author_nickname}, que vous suivez, a créé une nouvelle suggestion, lisez -la et contribuez :"
           email_outro: Vous avez reçu cette notification, car vous suivez %{author_nickname}. Vous pouvez arrêter de recevoir des notifications à partir du lien précédent.
           email_subject: Nouvelle suggestion de %{author_nickname}
-          notification_title: L'suggestion <a href="%{resource_path}">%{resource_title}</a> a été créée par <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
+          notification_title: La suggestion <a href="%{resource_path}">%{resource_title}</a> a été créée par <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
         endorse_suggestion_event:
-          email_intro: "%{author_name} %{author_nickname}, que vous suivez, a soutenu l'suggestion suivante; vous pouvez y contribuer si vous le souhaitez :"
+          email_intro: "%{author_name} %{author_nickname}, que vous suivez, a soutenu la suggestion suivante; vous pouvez y contribuer si vous le souhaitez :"
           email_outro: Vous avez reçu cette notification parce que vous suivez %{author_nickname}. Vous pouvez arrêter de recevoir des notifications à partir du lien précédent.
           email_subject: Suggestion soutenue par %{author_nickname}
-          notification_title: L'suggestion<a href="%{resource_path}">%{resource_title}</a> a été soutenue par <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
+          notification_title: La suggestion<a href="%{resource_path}">%{resource_title}</a> a été soutenue par <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
       index:
         title: Suggestions
       suggestion_signatures:
@@ -359,9 +359,9 @@ fr:
             day: journée
             month: Mois
             year: Année
-          help: S'il vous plaît, remplissez les champs suivants avec vos données personnelles pour signer l'suggestion
+          help: S'il vous plaît, remplissez les champs suivants avec vos données personnelles pour signer la suggestion
         finish:
-          back_to_suggestion: Retour à l'suggestion
+          back_to_suggestion: Retour à la suggestion
         sms_code:
           continue: Vérifier le code et continuer
           help: Vérifiez les SMS reçus sur votre téléphone
@@ -370,9 +370,9 @@ fr:
           help: Remplissez le formulaire avec votre numéro de téléphone vérifié pour demander votre code de vérification
       suggestion_votes:
         create:
-          error: Il y a eu des erreurs lors de la signature de l'suggestion.
-          invalid: Les données fournies pour signer l'suggestion ne sont pas valides
-          success_html: Toutes nos félicitations! L'suggestion <strong> %{title}</strong> a été signée correctement
+          error: Il y a eu des erreurs lors de la signature de la suggestion.
+          invalid: Les données fournies pour signer la suggestion ne sont pas valides
+          success_html: Toutes nos félicitations! La suggestion <strong> %{title}</strong> a été signée correctement
         personal_data:
           invalid: Les données personnelles ne correspondent pas aux données fournies pour autorisation.
         sms_code:
@@ -441,7 +441,7 @@ fr:
         vote_cabin:
           already_voted: Déjà signée
           supports_required: "%{total_supports} signatures requises"
-          verification_required: Vérifiez votre compte pour signer l'suggestion
+          verification_required: Vérifiez votre compte pour signer la suggestion
           vote: Signer
           votes_blocked: Signatures désactivées
         votes_count:
@@ -453,14 +453,14 @@ fr:
       suggestions_mailer:
         creation_subject: Votre suggestion '%{title}' a été créée
         suggestion_link:
-          check_suggestion_details: Vous pouvez accéder aux détails de l'suggestion
+          check_suggestion_details: Vous pouvez accéder aux détails de la suggestion
           here: ici
         more_information: Vous trouverez ici plus d'informations sur le processus de création d'une suggestion.
-        progress_report_body_for: L'suggestion %{title} a atteint %{percentage}% des soutiens requis.
+        progress_report_body_for: La suggestion %{title} a atteint %{percentage}% des soutiens requis.
         progress_report_for: 'Résumé de l''suggestion : %{title}'
         promotal_committee_help: Rappelez-vous que vous devez inviter au moins %{member_count} personnes au Comité de promotion. Envoyez le lien suivant pour les inviter
         status_change_body_for: 'Le statut de l''suggestion %{title} a été changé pour : %{state}'
-        status_change_for: L'suggestion %{title} a changé de statut
+        status_change_for: La suggestion %{title} a changé de statut
       last_activity:
         new_suggestion: Nouvelle suggestion
       pages:
@@ -482,7 +482,7 @@ fr:
       unavailable_scope: Portée indisponible
       versions:
         shared:
-          back_to_resource: Retour à l'suggestion
+          back_to_resource: Retour à la suggestion
     menu:
       suggestions: Suggestions
     resources:
@@ -523,7 +523,7 @@ fr:
         title: Signer %{suggestion_title}
       suggestions:
         suggestion:
-          check: Découvrez l'suggestion
-          check_and_support: Découvrez l'suggestion et signez-la
+          check: Découvrez la suggestion
+          check_and_support: Découvrez la suggestion et signez-la
         no_suggestions_yet:
           no_suggestions_yet: Aucune suggestion pour le moment !
