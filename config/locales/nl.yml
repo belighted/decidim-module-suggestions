@@ -510,6 +510,8 @@ nl:
         title: Maak nieuw suggestie
       suggestion_header:
         suggestion_menu_item: Suggestie
+      suggestion_header_steps:
+        description: Ondertekening periode tussen
       suggestion_signature_creation_header:
         back: Terug
         fill_personal_data: Vul uw gegevens in

@@ -525,6 +525,8 @@ en:
         title: Create new suggestion
       suggestion_header:
         suggestion_menu_item: Suggestion
+      suggestion_header_steps:
+        description: Signature period between
       suggestion_signature_creation_header:
         back: Back
         fill_personal_data: Complete your data
