@@ -30,6 +30,7 @@ nl:
         attachments_enabled: Bijlagen inschakelen
         banner_image: Banner afbeelding
         collect_user_extra_fields: Persoonlijke gebruikersgegevens verzamelen bij ondertekening
+        comments_enabled: Schakel opmerkingen in
         custom_signature_end_date_enabled: Sta auteurs toe het einde van de handtekeningperiode te kiezen
         description: Beschrijving
         document_number_authorization_handler: Autorisatie om documentnummer op handtekeningen te verifiëren

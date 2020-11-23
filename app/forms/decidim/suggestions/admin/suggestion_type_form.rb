@@ -15,6 +15,7 @@ module Decidim
         attribute :signature_type, String
         attribute :undo_online_signatures_enabled, Boolean
         attribute :attachments_enabled, Boolean
+        attribute :comments_enabled, Boolean
         attribute :custom_signature_end_date_enabled, Boolean
         attribute :area_enabled, Boolean
         attribute :promoting_committee_enabled, Boolean

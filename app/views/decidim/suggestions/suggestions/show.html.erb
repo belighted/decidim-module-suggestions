@@ -81,4 +81,4 @@ edit_link(
   </div>
 </div>
 
-<%= comments_for current_suggestion if current_suggestion.published? %>
+<%= comments_for current_suggestion if current_suggestion.type.comments_enabled && current_suggestion.published? %>
