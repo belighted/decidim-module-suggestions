@@ -59,6 +59,16 @@ module Decidim
         [present(model).author] +
           model.committee_members.approved.non_deleted.excluding_author.map { |member| present(member.user) }
       end
+
+      def comments_count
+        return 0 unless model.type.comments_enabled
+        super
+      end
+
+      def comments_count_status
+        return unless model.type.comments_enabled
+        super
+      end
     end
   end
 end
