@@ -35,7 +35,7 @@
     <div class="row column" id="promoting-committee-details">
       <%= form.check_box :promoting_committee_enabled %>
 
-      <div class="row column minimum-committee-members-details">
+      <div class="row column suggestion-minimum-committee-members-details">
         <%= form.number_field :minimum_committee_members, min: 0, step: 1 %>
       </div>
     </div>
@@ -77,4 +77,4 @@
   </div>
 </div>
 
-<%= javascript_include_tag "decidim/suggestions/admin/suggestions_types.js" %>
+<%= javascript_include_tag "decidim/suggestions/admin/suggestions_types" %>

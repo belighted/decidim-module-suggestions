@@ -8,9 +8,9 @@
 
   const toggleVisibility = () => {
     if ($promotingCommitteeCheckbox.is(":checked")) {
-      $(".minimum-committee-members-details", $scope).show();
+      $(".suggestion-minimum-committee-members-details", $scope).show();
     } else {
-      $(".minimum-committee-members-details", $scope).hide();
+      $(".suggestion-minimum-committee-members-details", $scope).hide();
     }
   };
 

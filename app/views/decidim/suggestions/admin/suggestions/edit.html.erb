@@ -6,7 +6,7 @@
     <% if allowed_to? :send_to_technical_validation, :suggestion, suggestion: current_suggestion %>
       <%= link_to t(".send_to_technical_validation"),
                   send_to_technical_validation_suggestion_path(current_suggestion),
-                  class: "button muted",
+                  class: "button hollow",
                   data: { confirm: t(".confirm") } %>
     <% elsif current_suggestion.created? %>
       <%= link_to t(".send_to_technical_validation"), "#", class: "button muted disabled" %>
