@@ -3,11 +3,13 @@
 module Decidim
   module Suggestions
     module AttachmentMethods
+      include Decidim::Suggestions::CurrentLocale
+
       private
 
       def build_attachment
         @attachment = Attachment.new(
-          title: @form.attachment.title,
+          title: {current_locale => @form.attachment.title},
           file: @form.attachment.file,
           attached_to: @attached_to
         )
