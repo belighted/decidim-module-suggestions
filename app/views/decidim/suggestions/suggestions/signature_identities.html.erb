@@ -11,7 +11,8 @@
                steps: signature_has_steps?
            } unless current_suggestion.offline_signature_type? %>
 
-<% Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.each do |g| %>
+<!-- Turn off extra vote options as user is already a committee member and should vote only once (!) -->
+<% false && Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.each do |g| %>
   <br>
   <% if @voted_groups.include? g.id %>
     <%= button_to(

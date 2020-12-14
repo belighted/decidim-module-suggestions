@@ -1,4 +1,5 @@
-<% if current_user && Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.any? && allowed_to?(:vote, :suggestion, suggestion: suggestion) %>
+<!-- Turn off extra vote options as user is already a committee member and should vote only once (!) -->
+<% if false && current_user && Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.any? && allowed_to?(:vote, :suggestion, suggestion: suggestion) %>
   <button id="select-identity-button"
           class="button expanded light button--sc">
     <%= t(".vote") %>
@@ -8,7 +9,7 @@
        id="user-identities"
        data-reveal data-refresh-url="<%= signature_identities_suggestion_url(slug: suggestion.slug) %>">
   </div>
-<% elsif suggestion.accepts_online_votes? %>
+<% elsif suggestion.accepts_online_votes? || current_suggestion.votes_enabled_for_user?(current_user) %>
     <%= render partial: "decidim/suggestions/suggestions/vote_button",
                locals: {
                    suggestion: suggestion,

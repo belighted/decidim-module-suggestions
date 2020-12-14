@@ -35,7 +35,7 @@ edit_link(
     <div class="card">
       <div class="card__content">
         <%= render partial: "progress_bar" %>
-        <% if current_suggestion.votes_enabled? %>
+        <% if current_suggestion.votes_enabled? || current_suggestion.votes_enabled_for_user?(current_user) %>
           <div id="suggestion-<%= current_suggestion.id %>-vote-cabin">
             <%= render partial: "vote_cabin", locals: { suggestion: current_suggestion } %>
           </div>

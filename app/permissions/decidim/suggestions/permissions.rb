@@ -140,7 +140,7 @@ module Decidim
         return unless permission_action.action == :unvote &&
                       permission_action.subject == :suggestion
 
-        can_unvote = suggestion.accepts_online_unvotes? &&
+        can_unvote = (suggestion.accepts_online_unvotes? || suggestion.unvotes_enabled_for_user?(user)) &&
                      suggestion.organization&.id == user.organization&.id &&
                      suggestion.votes.where(decidim_author_id: user.id, decidim_user_group_id: decidim_user_group_id).any? &&
                      (can_user_support?(suggestion) || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?) &&
@@ -178,7 +178,7 @@ module Decidim
       end
 
       def can_vote?
-        suggestion.votes_enabled? &&
+        (suggestion.votes_enabled? || suggestion.votes_enabled_for_user?(user)) &&
           suggestion.organization&.id == user.organization&.id &&
           suggestion.votes.where(decidim_author_id: user.id, decidim_user_group_id: decidim_user_group_id).empty? &&
           (can_user_support?(suggestion) || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?) &&

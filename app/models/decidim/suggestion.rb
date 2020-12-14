@@ -195,8 +195,17 @@ module Decidim
 
     def votes_enabled?
       published? &&
-        signature_start_date <= Date.current &&
-        signature_end_date >= Date.current
+        signature_start_date.present? && signature_start_date <= Date.current &&
+        signature_end_date.present? && signature_end_date >= Date.current
+    end
+
+    def votes_enabled_for_user?(user)
+      votes_enabled? ||
+        (user && (created? || validating?) && has_authorship?(user))
+    end
+
+    def unvotes_enabled_for_user?(user)
+      votes_enabled_for_user?(user) && type.undo_online_signatures_enabled?
     end
 
     # Public: Check if the user has voted the question.

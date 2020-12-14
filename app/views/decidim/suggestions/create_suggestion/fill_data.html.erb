@@ -68,13 +68,13 @@
               </div>
             <% end %>
 
-            <% if Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.any? %>
-              <div class="field">
-                <%= f.select :decidim_user_group_id,
+            <%# if Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.any? %>
+              <!--<div class="field">-->
+                <%#= f.select :decidim_user_group_id,
                              Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.map { |g| [g.name, g.id] },
                              include_blank: current_user.name %>
-              </div>
-            <% end %>
+              <!--</div>-->
+            <%# end %>
 
             <% if suggestion_type.attachments_enabled? %>
               <fieldset>
