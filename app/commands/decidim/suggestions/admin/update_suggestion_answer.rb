@@ -44,7 +44,9 @@ module Decidim
         def attributes
           attrs = {
             answer: form.answer,
-            answer_url: form.answer_url
+            answer_url: form.answer_url,
+            state: form.state,
+            answer_date: answer_date
           }
 
           attrs[:answered_at] = Time.current if form.answer.present?
@@ -55,11 +57,17 @@ module Decidim
 
             if suggestion.published?
               @notify_extended = true if form.signature_end_date != suggestion.signature_end_date &&
-                                         form.signature_end_date > suggestion.signature_end_date
+                form.signature_end_date > suggestion.signature_end_date
             end
           end
 
           attrs
+        end
+
+        def answer_date
+          return nil unless form.answer_date_allowed?
+
+          form.answer_date
         end
 
         def notify_suggestion_is_extended

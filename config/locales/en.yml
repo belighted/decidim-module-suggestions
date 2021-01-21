@@ -1,5 +1,9 @@
 ---
 en:
+  errors:
+    messages:
+      must_be_before: must be before %{date}
+
   activemodel:
     attributes:
       suggestion:
@@ -87,6 +91,9 @@ en:
               published: Published
               rejected: Not enough signatures
               validating: Technical validation
+              classified: Classified
+              debatted: Debatted
+              examinated: Examinated
           type_id_eq:
             label: Type
         search_placeholder:
@@ -97,6 +104,7 @@ en:
       models:
         suggestions:
           fields:
+            answered_at: Answered at
             created_at: Created at
             id: ID
             published_at: Published at
@@ -284,6 +292,9 @@ en:
         published: Published
         rejected: Not enough signatures
         validating: Technical validation
+        classified: Classified
+        debatted: Debatted
+        examinated: Examinated
       application_helper:
         filter_area_values:
           all: All
@@ -296,6 +307,9 @@ en:
           closed: Closed
           open: Open
           rejected: Not enough signatures
+          classified: Classified
+          debatted: Debatted
+          examinated: Examinated
         filter_type_values:
           all: All
       committee_requests:
@@ -442,6 +456,9 @@ en:
             published: This proposal is published because
             rejected: This proposal has been rejected because
             validating: This proposal is being evaluated
+            classified: This proposal has been classified because
+            debatted: This proposal has been debatted because
+            examinated: This proposal has been examinated because
           suggestion_rejected_reason: This suggestion has been rejected due to its lack of signatures.
         show:
           any_vote_method: This citizen suggestion collects both online and in-person signatures.
@@ -492,9 +509,15 @@ en:
           published: Published
           rejected: Not enough signatures
           validating: Technical validation
+          classified: Classified
+          debatted: Debatted
+          examinated: Examinated
       states:
         accepted: Accepted
         expired: Expired
+        classified: Classified
+        debatted: Debatted
+        examinated: Examinated
       unavailable_scope: Unavailable scope
       versions:
         shared:

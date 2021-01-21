@@ -14,7 +14,8 @@ module Decidim
       #
       # Returns a String.
       def state_badge_css_class(suggestion)
-        return "success" if suggestion.accepted?
+        return "success" if suggestion.accepted? || suggestion.debatted? || suggestion.published?
+        return "alert" if suggestion.classified?
 
         "warning"
       end
@@ -25,9 +26,12 @@ module Decidim
       #
       # Returns a String.
       def humanize_state(suggestion)
-        I18n.t(suggestion.accepted? ? "accepted" : "expired",
-               scope: "decidim.suggestions.states",
-               default: :expired)
+        # I18n.t(suggestion.accepted? ? "accepted" : "expired",
+        #        scope: "decidim.suggestions.states",
+        #        default: :expired)
+        return I18n.t("expired", scope: "decidim.suggestions.states") if suggestion.rejected?
+
+        I18n.t(suggestion.state, scope: "decidim.suggestions.states")
       end
 
       # Public: The state of an suggestion from an administration perspective in

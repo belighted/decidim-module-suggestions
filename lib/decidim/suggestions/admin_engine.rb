@@ -79,6 +79,7 @@ module Decidim
 
       initializer "admin_decidim_suggestions.assets" do |app|
         app.config.assets.precompile += %w(
+          admin_decidim_suggestions_manifest.css
           admin_decidim_suggestions_manifest.js
         )
       end

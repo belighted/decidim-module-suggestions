@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card suggestion-answer">
   <div class="card-divider">
     <h2 class="card-title">
       <%= link_to "#{t ".suggestions"} > ", suggestions_path %>
@@ -7,17 +7,36 @@
   </div>
 
   <div class="card-section">
-    <div class="row column">
-      <strong><%= t ".description" %>: </strong> <%= decidim_sanitize translated_attribute(suggestion.description) %>
+    <div class="suggestion-author-row">
+      <div class="author--avatar">
+        <%= image_tag suggestion.author.avatar_url %>
+      </div>
+      <div class="author--name">
+        <%= suggestion.author.name %>
+      </div>
     </div>
+  </div>
+
+  <div class="card-section suggestion-info">
     <div class="row column">
-      <strong><%= t ".created_at" %>: </strong> <%= l suggestion.created_at, format: :decidim_short %>
+      <strong><%= t ".description" %></strong>
+      <div class="description">
+        <%= decidim_sanitize(translated_attribute(suggestion.description)) %>
+      </div>
     </div>
-    <div class="row column">
-      <strong><%= t ".state" %>: </strong> <%= I18n.t(suggestion.state, scope: "decidim.suggestions.admin_states") %>
-    </div>
-    <div class="row column">
-      <strong><%= t ".suggestion_votes_count" %>: </strong> <%= suggestion.suggestion_votes_count %>
+    <div class="row column flex-column">
+      <div class="info-box">
+        <strong><%= t ".created_at" %></strong>
+        <p><%= l suggestion.created_at, format: :decidim_short %></p>
+      </div>
+      <div class="info-box">
+        <strong><%= t ".state" %></strong>
+        <p><%= I18n.t(suggestion.state, scope: "decidim.suggestions.admin_states") %></p>
+      </div>
+      <div class="info-box">
+        <strong><%= t ".suggestion_votes_count" %></strong>
+        <p class="text-right"><b><%= suggestion.suggestion_votes_count %></b>/<%= suggestion.scoped_type.supports_required %></p>
+      </div>
     </div>
   </div>
 </div>

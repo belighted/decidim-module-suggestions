@@ -19,7 +19,14 @@ module Decidim
                 TreePoint.new("rejected", t("decidim.suggestions.application_helper.filter_state_values.rejected"))
               ]
             ),
-            TreePoint.new("answered", t("decidim.suggestions.application_helper.filter_state_values.answered"))
+            TreeNode.new(
+              TreePoint.new("answered", t("decidim.suggestions.application_helper.filter_state_values.answered")),
+              [
+                TreePoint.new("examinated", t("decidim.suggestions.application_helper.filter_state_values.examinated")),
+                TreePoint.new("debatted", t("decidim.suggestions.application_helper.filter_state_values.debatted")),
+                TreePoint.new("classified", t("decidim.suggestions.application_helper.filter_state_values.classified"))
+              ]
+            ),
           ]
         )
       end

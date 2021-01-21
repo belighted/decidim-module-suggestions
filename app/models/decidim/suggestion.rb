@@ -57,7 +57,9 @@ module Decidim
              as: :participatory_space
 
     enum signature_type: [:online, :offline, :any], _suffix: true
-    enum state: [:created, :validating, :discarded, :published, :rejected, :accepted]
+    AUTOMATIC_STATES = [:created, :validating, :discarded, :published, :rejected, :accepted].freeze
+    MANUAL_STATES = [:published, :examinated, :debatted, :classified].freeze
+    enum state: (AUTOMATIC_STATES + MANUAL_STATES).uniq
 
     validates :title, :description, :state, presence: true
     validates :signature_type, presence: true
@@ -69,11 +71,11 @@ module Decidim
               case_sensitive: false
 
     scope :open, lambda {
-      where.not(state: [:discarded, :rejected, :accepted, :created])
+      where.not(state: [:classified, :discarded, :rejected, :accepted, :created])
            .currently_signable
     }
     scope :closed, lambda {
-      where(state: [:discarded, :rejected, :accepted])
+      where(state: [:classified, :discarded, :rejected, :accepted])
         .or(currently_unsignable)
     }
     scope :published, -> { where.not(published_at: nil) }
@@ -93,6 +95,7 @@ module Decidim
     scope :public_spaces, -> { published }
     scope :signature_type_updatable, -> { created }
 
+    scope :order_by_answer_date, -> { order("answered_at DESC nulls last") }
     scope :order_by_most_recent, -> { order(created_at: :desc) }
     scope :order_by_most_recently_published, -> { order(published_at: :desc) }
     scope :order_by_supports, -> { order(Arel.sql("suggestion_votes_count + coalesce(offline_votes, 0) desc")) }
@@ -158,7 +161,7 @@ module Decidim
     #
     # RETURNS BOOLEAN
     def closed?
-      discarded? || rejected? || accepted? || !votes_enabled?
+      discarded? || rejected? || accepted? || !votes_enabled? || classified?
     end
 
     # PUBLIC
@@ -194,9 +197,13 @@ module Decidim
     delegate :supports_required, to: :scoped_type
 
     def votes_enabled?
-      published? &&
+      votes_enabled_state? &&
         signature_start_date.present? && signature_start_date <= Date.current &&
         signature_end_date.present? && signature_end_date >= Date.current
+    end
+
+    def votes_enabled_state?
+      published? || examinated? || debatted?
     end
 
     def votes_enabled_for_user?(user)
