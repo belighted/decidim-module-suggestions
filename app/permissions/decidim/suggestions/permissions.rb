@@ -55,6 +55,9 @@ module Decidim
         return allow! if suggestion.published? || suggestion.rejected? || suggestion.accepted?
         return allow! if user && (suggestion.has_authorship?(user) || user.admin?)
 
+        # Registered users should see unpublished suggestion in order to support/vote them via shared link
+        return allow! if user && (suggestion.created? || suggestion.validating?)
+
         disallow!
       end
 

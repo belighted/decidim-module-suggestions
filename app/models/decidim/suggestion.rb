@@ -208,7 +208,7 @@ module Decidim
 
     def votes_enabled_for_user?(user)
       votes_enabled? ||
-        (user && (created? || validating?) && has_authorship?(user))
+        (user && (created? || validating?)) # && has_authorship?(user))
     end
 
     def unvotes_enabled_for_user?(user)

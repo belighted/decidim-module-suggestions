@@ -6,7 +6,8 @@
       <div class="card--list__text">
         <div>
           <h6 class="card--list__heading heading6 lowercase" id="committee_link">
-            <%= decidim_suggestions.new_suggestion_committee_request_url(current_suggestion) %>
+            <%#= decidim_suggestions.new_suggestion_committee_request_url(current_suggestion) %>
+            <%= decidim_suggestions.suggestion_url(current_suggestion) %>
           </h6>
         </div>
       </div>

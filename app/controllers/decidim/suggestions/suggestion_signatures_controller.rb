@@ -34,6 +34,28 @@ module Decidim
 
       # POST /suggestions/:suggestion_id/suggestion_signatures
       def create
+        # When it is not published yet we need users to do both - become a committee member and sign at once
+        if current_suggestion.created? &&
+          current_suggestion.promoting_committee_enabled? &&
+          !current_suggestion.has_authorship?(current_user)
+          # No validation is needed by the admin or the suggestion creator in order for a committee member to vote.
+          enforce_permission_to :request_membership, :suggestion, suggestion: current_suggestion
+          form = Decidim::Suggestions::CommitteeMemberForm.from_params(suggestion_id: current_suggestion.id, user_id: current_user.id, state: "accepted")
+
+          SpawnCommitteeRequest.call(form, current_user) do
+            on(:ok) do
+              if current_suggestion.created? && current_suggestion.enough_committee_members?
+                Admin::SendSuggestionToTechnicalValidation.call(current_suggestion, current_user)
+              end
+            end
+            on(:invalid) do |request|
+              redirect_to suggestion_path(current_suggestion.id), flash: {
+                error: request.errors.full_messages.to_sentence
+              } and return
+            end
+          end
+        end
+
         group_id = params[:group_id] || session[:suggestion_vote_form]&.dig("group_id")
         enforce_permission_to :vote, :suggestion, suggestion: current_suggestion, group_id: group_id
         @form = form(Decidim::Suggestions::VoteForm)
