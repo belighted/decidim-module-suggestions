@@ -20,7 +20,8 @@ module Decidim
       attribute :attachment, AttachmentForm
 
       validates :title, :description, presence: true
-      validates :title, length: { maximum: 150 }
+      # validates :title, length: {maximum: 150}
+      validates :description, length: {maximum: 4000}
       validates :signature_type, presence: true
       validates :type_id, presence: true
       validates :area, presence: true, if: ->(form) { form.area_id.present? }

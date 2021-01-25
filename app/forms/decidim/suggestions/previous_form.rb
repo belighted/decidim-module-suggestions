@@ -13,7 +13,8 @@ module Decidim
       attribute :type_id, Integer
 
       validates :title, :description, presence: true
-      validates :title, length: { maximum: 150 }
+      # validates :title, length: {maximum: 150}
+      validates :description, length: {maximum: 4000}
       validates :type_id, presence: true
     end
   end
