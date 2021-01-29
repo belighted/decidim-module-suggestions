@@ -79,6 +79,12 @@ module Decidim
         end
       end
 
+      initializer "decidim_suggestions.extends" do
+        Dir.glob("#{Decidim::Suggestions::Engine.root}/lib/extends/suggestions/**/*.rb").each do |override|
+          require_dependency override
+        end
+      end
+
       initializer "decidim_suggestions.add_cells_view_paths" do
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::Suggestions::Engine.root}/app/cells")
         Cell::ViewModel.view_paths << File.expand_path("#{Decidim::Suggestions::Engine.root}/app/views") # for partials

@@ -84,6 +84,12 @@ module Decidim
         )
       end
 
+      initializer "decidim_suggestions.extends" do
+        Dir.glob("#{Decidim::Suggestions::Engine.root}/lib/extends/suggestions/**/*.rb").each do |override|
+          require_dependency override
+        end
+      end
+
       initializer "decidim_suggestions.admin_menu" do
         Decidim.menu :admin_menu do |menu|
           menu.item I18n.t("menu.suggestions", scope: "decidim.admin"),
