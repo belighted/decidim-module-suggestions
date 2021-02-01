@@ -76,11 +76,11 @@ module Decidim
       end
 
       def creation_enabled?
-        Decidim::Suggestions.creation_enabled && (
-          Decidim::Suggestions.do_not_require_authorization ||
+        Decidim::Suggestions.creation_enabled &&
+          organization_suggestions_settings_allow_to_create? &&
+          (Decidim::Suggestions.do_not_require_authorization ||
             UserAuthorizations.for(user).any? ||
-            Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?
-        )
+            Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?)
       end
 
       def request_membership?
@@ -141,13 +141,14 @@ module Decidim
 
       def unvote_suggestion?
         return unless permission_action.action == :unvote &&
-                      permission_action.subject == :suggestion
+          permission_action.subject == :suggestion
 
         can_unvote = (suggestion.accepts_online_unvotes? || suggestion.unvotes_enabled_for_user?(user)) &&
-                     suggestion.organization&.id == user.organization&.id &&
-                     suggestion.votes.where(decidim_author_id: user.id, decidim_user_group_id: decidim_user_group_id).any? &&
-                     (can_user_support?(suggestion) || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?) &&
-                     authorized?(:vote, resource: suggestion, permissions_holder: suggestion.type)
+          suggestion.organization&.id == user.organization&.id &&
+          organization_suggestions_settings_allow_to_vote? &&
+          suggestion.votes.where(decidim_author_id: user.id, decidim_user_group_id: decidim_user_group_id).any? &&
+          (can_user_support?(suggestion) || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?) &&
+          authorized?(:vote, resource: suggestion, permissions_holder: suggestion.type)
 
         toggle_allow(can_unvote)
       end
@@ -196,19 +197,28 @@ module Decidim
         )
       end
 
+      def organization_suggestions_settings_allow_to_create?
+        organization_suggestions_settings_allow_to?('create')
+      end
+
       def organization_suggestions_settings_allow_to_vote?
-        settings = suggestion.organization&.suggestions_settings
+        organization_suggestions_settings_allow_to?('sign')
+      end
+
+      def organization_suggestions_settings_allow_to?(action)
+        organization = suggestion&.organization || user&.organization
+        settings = organization&.suggestions_settings
         return true if settings.blank?
 
         authorization = UserAuthorizations.for(user).first #{|auth| auth.metadata[:official_birth_date].present?}
         return true unless authorization
 
-        minimum_age = settings["sign_suggestion_minimum_age"]
+        minimum_age = settings["#{action}_suggestion_minimum_age"]
         return false if minimum_age.present? && authorization.metadata[:official_birth_date].present? &&
           (((Time.zone.now - authorization.metadata[:official_birth_date].in_time_zone) / 1.year.seconds).floor < minimum_age)
 
         # authorization = UserAuthorizations.for(user).first {|auth| auth.metadata[:postal_code].present?}
-        allowed_postal_codes = settings["sign_suggestion_allowed_postal_codes"]
+        allowed_postal_codes = settings["#{action}_suggestion_allowed_postal_codes"]
         return false if allowed_postal_codes.present? && authorization.metadata[:postal_code].present? &&
           !allowed_postal_codes.member?(authorization.metadata[:postal_code])
 

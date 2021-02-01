@@ -526,6 +526,8 @@ en:
       organizations:
         suggestions_settings:
           fieldset_title: Suggestions settings
+          create_suggestion_minimum_age_hint: Leave blank to skip minimum age validation.
+          create_suggestion_allowed_postal_codes_hint: Enter each one of them in a new line. Leave blank to skip postal codes validation.
           sign_suggestion_minimum_age_hint: Leave blank to skip minimum age validation.
           sign_suggestion_allowed_postal_codes_hint: Enter each one of them in a new line. Leave blank to skip postal codes validation.
     menu:

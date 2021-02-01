@@ -1,6 +1,10 @@
 <fieldset class="fieldset">
   <legend><%= t(".fieldset_title") %></legend>
   <%= f.fields_for :suggestions_settings do %>
+    <%= f.number_field :create_suggestion_minimum_age %>
+    <p class="help-text"><%= t(".create_suggestion_minimum_age_hint") %></p>
+    <%= f.text_area :create_suggestion_allowed_postal_codes %>
+    <p class="help-text"><%= t(".create_suggestion_allowed_postal_codes_hint") %></p>
     <%= f.number_field :sign_suggestion_minimum_age %>
     <p class="help-text"><%= t(".sign_suggestion_minimum_age_hint") %></p>
     <%= f.text_area :sign_suggestion_allowed_postal_codes %>

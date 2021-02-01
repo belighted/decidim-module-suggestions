@@ -9,6 +9,8 @@ module Suggestions
     included do
 
       jsonb_attribute :suggestions_settings, [
+        [:create_suggestion_minimum_age, Integer],
+        [:create_suggestion_allowed_postal_codes, String],
         [:sign_suggestion_minimum_age, Integer],
         [:sign_suggestion_allowed_postal_codes, String]
       ]
@@ -19,6 +21,7 @@ module Suggestions
           [k, Decidim::OmniauthProvider.value_defined?(v) ? Decidim::AttributeEncryptor.decrypt(v) : v]
         end]
         if model.suggestions_settings.present?
+          self.suggestions_settings["create_suggestion_allowed_postal_codes"] = (model.suggestions_settings["create_suggestion_allowed_postal_codes"] || []).join("\n")
           self.suggestions_settings["sign_suggestion_allowed_postal_codes"] = (model.suggestions_settings["sign_suggestion_allowed_postal_codes"] || []).join("\n")
         end
       end
@@ -26,14 +29,18 @@ module Suggestions
       def clean_suggestions_settings
         return if suggestions_settings.blank?
 
-        postal_codes = suggestions_settings[:sign_suggestion_allowed_postal_codes]
-        if postal_codes.present?
-          suggestions_settings[:sign_suggestion_allowed_postal_codes] = postal_codes.split("\n").map(&:chomp).select(&:present?)
-        else
-          suggestions_settings[:sign_suggestion_allowed_postal_codes] = []
-        end
+        suggestions_settings[:create_suggestion_allowed_postal_codes] = clean_suggestion_allowed_postal_codes(:create)
+        suggestions_settings[:sign_suggestion_allowed_postal_codes] = clean_suggestion_allowed_postal_codes(:sign)
 
         suggestions_settings
+      end
+
+      private
+
+      def clean_suggestion_allowed_postal_codes(action)
+        postal_codes = suggestions_settings.dig("#{action}_suggestion_allowed_postal_codes".to_sym)
+        return [] if postal_codes.blank?
+        postal_codes.split("\n").map(&:chomp).select(&:present?)
       end
 
     end
