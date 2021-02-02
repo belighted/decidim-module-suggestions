@@ -9,6 +9,8 @@ module Decidim
           return permission_action if permission_action.scope != :admin
           return permission_action unless user
 
+          disallow! and return permission_action unless user.admin?
+
           user_can_enter_space_area?
 
           return permission_action if suggestion && !suggestion.is_a?(Decidim::Suggestion)

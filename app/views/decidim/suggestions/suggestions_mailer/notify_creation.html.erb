@@ -18,5 +18,5 @@
 <p>
   <%= t("check_suggestion_details", scope: "decidim.suggestions.suggestions_mailer.suggestion_link") %>
   <%= link_to t("here",  scope: "decidim.suggestions.suggestions_mailer.suggestion_link"),
-              decidim_admin_suggestions.suggestion_url(@suggestion, host: @organization.host) %>
+              decidim_suggestions.suggestion_url(@suggestion, host: @organization.host) %>
 </p>
