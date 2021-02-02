@@ -206,6 +206,8 @@ module Decidim
       end
 
       def organization_suggestions_settings_allow_to?(action)
+        return true if user.admin?
+
         organization = suggestion&.organization || user&.organization
         settings = organization&.suggestions_settings
         return true if settings.blank?
