@@ -37,12 +37,12 @@ module Decidim
 
           resources :attachments, controller: "suggestion_attachments"
 
-          resources :committee_requests, only: [:index] do
-            member do
-              get :approve
-              delete :revoke
-            end
-          end
+          # resources :committee_requests, only: [:index] do
+          #   member do
+          #     get :approve
+          #     delete :revoke
+          #   end
+          # end
 
           resource :answer, only: [:edit, :update]
         end
