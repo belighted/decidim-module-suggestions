@@ -34,8 +34,17 @@
       </button>
     <% end %>
   <% else %>
-    <%= authorized_vote_modal_button(suggestion, remote: true, class: "button expanded light button--sc") do %>
-      <%= verification_label %>
+    <% if current_organization.suggestions_settings_allow_to?(current_user, 'sign') %>
+      <%= authorized_vote_modal_button(suggestion, remote: true, class: "button expanded light button--sc") do %>
+        <%= verification_label %>
+      <% end %>
+    <% else %>
+      <% msg = organization_suggestions_settings_validation_message(current_suggestion, 'sign') %>
+      <% if msg.present? %>
+        <button class='button expanded light button--sc' disabled>
+          <%= msg %>
+        </button>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

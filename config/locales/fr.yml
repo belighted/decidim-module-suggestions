@@ -451,6 +451,17 @@ fr:
             other: SIGNATURES
           most_popular_suggestion: Suggestion la plus populaire
           need_more_votes: Besoin de plus de signatures
+        organization_suggestions_settings:
+          create:
+            modal_title: Désolé, vous n'êtes pas autorisé à effectuer cette action
+            minimum_age_not_valid: Vous devez avoir minimum %{minimum_age} ans pour créer la suggestion
+            postal_code_not_valid: Vous devez être domicilié en région de Bruxelles-Capitale pour créer la suggestion
+            minimum_age_and_postal_code_not_valid: Vous devez avoir minimum %{minimum_age} ans et vivre dans la région de Bruxelles-Capital pour créer la suggestion
+          sign:
+            minimum_age_not_valid: Vous devez avoir minimum %{minimum_age} ans pour signer la suggestion
+            postal_code_not_valid: Vous devez être domicilié en région de Bruxelles-Capitale pour signer la suggestion
+            minimum_age_and_postal_code_not_valid: Vous devez avoir minimum %{minimum_age} ans et vivre dans la région de Bruxelles-Capital pour signer la suggestion
+
       suggestions_mailer:
         creation_subject: Votre suggestion '%{title}' a été créée
         suggestion_link:

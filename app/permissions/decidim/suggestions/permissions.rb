@@ -206,25 +206,8 @@ module Decidim
       end
 
       def organization_suggestions_settings_allow_to?(action)
-        return true if user.admin?
-
         organization = suggestion&.organization || user&.organization
-        settings = organization&.suggestions_settings
-        return true if settings.blank?
-
-        authorization = UserAuthorizations.for(user).first #{|auth| auth.metadata[:official_birth_date].present?}
-        return true unless authorization
-
-        minimum_age = settings["#{action}_suggestion_minimum_age"]
-        return false if minimum_age.present? && authorization.metadata[:official_birth_date].present? &&
-          (((Time.zone.now - authorization.metadata[:official_birth_date].in_time_zone) / 1.year.seconds).floor < minimum_age)
-
-        # authorization = UserAuthorizations.for(user).first {|auth| auth.metadata[:postal_code].present?}
-        allowed_postal_codes = settings["#{action}_suggestion_allowed_postal_codes"]
-        return false if allowed_postal_codes.present? && authorization.metadata[:postal_code].present? &&
-          !allowed_postal_codes.member?(authorization.metadata[:postal_code])
-
-        true
+        organization.suggestions_settings_allow_to?(user, action)
       end
 
     end
