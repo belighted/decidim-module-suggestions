@@ -9,8 +9,6 @@ module Decidim
           return permission_action if permission_action.scope != :admin
           return permission_action unless user
 
-          disallow! and return permission_action unless user.admin?
-
           user_can_enter_space_area?
 
           return permission_action if suggestion && !suggestion.is_a?(Decidim::Suggestion)
@@ -19,11 +17,13 @@ module Decidim
 
           if !user.admin? && suggestion&.has_authorship?(user)
             suggestion_committee_action?
-            suggestion_user_action?
+            suggestion_user_action? if permission_action.action == :send_to_technical_validation # allow regular user to send suggestion to tech validation
             attachment_action?
 
             return permission_action
           end
+
+          disallow! and return permission_action unless user.admin? # disallow regular users to see suggestions on admin panel
 
           if !user.admin? && has_suggestions?
             read_suggestion_list_action?
