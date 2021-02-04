@@ -43,6 +43,7 @@ module Decidim
 
         validate :notify_missing_attachment_if_errored
         validate :area_is_not_removed
+        validate :hashtag_uniqueness, if: ->(form) {form.hashtag.present?}
 
         def map_model(model)
           self.type_id = model.type.id
@@ -93,6 +94,11 @@ module Decidim
 
           errors.add(:area_id, :blank) if area_id.blank?
         end
+
+        def hashtag_uniqueness
+          errors.add(:hashtag, :taken) if Decidim::Suggestion.where(hashtag: hashtag).where.not(id: context.suggestion.id).exists?
+        end
+
       end
     end
   end
