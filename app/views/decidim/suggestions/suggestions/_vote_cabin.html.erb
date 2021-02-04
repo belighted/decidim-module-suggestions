@@ -9,7 +9,7 @@
        id="user-identities"
        data-reveal data-refresh-url="<%= signature_identities_suggestion_url(slug: suggestion.slug) %>">
   </div>
-<% elsif suggestion.accepts_online_votes? || current_suggestion.votes_enabled_for_user?(current_user) %>
+<% elsif suggestion.accepts_online_votes? || suggestion.votes_enabled_for_user?(current_user) %>
     <%= render partial: "decidim/suggestions/suggestions/vote_button",
                locals: {
                    suggestion: suggestion,

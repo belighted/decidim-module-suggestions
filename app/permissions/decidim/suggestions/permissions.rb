@@ -78,9 +78,10 @@ module Decidim
       def creation_enabled?
         Decidim::Suggestions.creation_enabled &&
           organization_suggestions_settings_allow_to_create? &&
-          (Decidim::Suggestions.do_not_require_authorization ||
-            UserAuthorizations.for(user).any? ||
-            Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?)
+          (creation_authorized? || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?)
+          # (Decidim::Suggestions.do_not_require_authorization ||
+          #   UserAuthorizations.for(user).any? ||
+          #   Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?)
       end
 
       def request_membership?
@@ -109,6 +110,15 @@ module Decidim
             UserAuthorizations.for(user).any? ||
             Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?
           )
+      end
+
+      def creation_authorized?
+        return true if Decidim::Suggestions.do_not_require_authorization
+        return true if available_verification_workflows.empty?
+
+        Decidim::Suggestions::SuggestionTypes.for(user.organization).find do |type|
+          Decidim::ActionAuthorizer.new(user, :create, type, type).authorize.ok?
+        end.present?
       end
 
       def has_suggestions?
@@ -147,7 +157,7 @@ module Decidim
           suggestion.organization&.id == user.organization&.id &&
           organization_suggestions_settings_allow_to_vote? &&
           suggestion.votes.where(decidim_author_id: user.id, decidim_user_group_id: decidim_user_group_id).any? &&
-          (can_user_support?(suggestion) || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?) &&
+          # (can_user_support?(suggestion) || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?) &&
           authorized?(:vote, resource: suggestion, permissions_holder: suggestion.type)
 
         toggle_allow(can_unvote)
@@ -186,7 +196,7 @@ module Decidim
           suggestion.organization&.id == user.organization&.id &&
           organization_suggestions_settings_allow_to_vote? &&
           suggestion.votes.where(decidim_author_id: user.id, decidim_user_group_id: decidim_user_group_id).empty? &&
-          (can_user_support?(suggestion) || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?) &&
+          # (can_user_support?(suggestion) || Decidim::UserGroups::ManageableUserGroups.for(user).verified.any?) &&
           authorized?(:vote, resource: suggestion, permissions_holder: suggestion.type)
       end
 
