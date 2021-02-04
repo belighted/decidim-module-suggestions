@@ -75,7 +75,9 @@ edit_link(
       <%= render partial: "result", locals: { suggestion: current_suggestion } %>
     </div>
 
-    <%= attachments_for current_suggestion %>
+    <%# if current_suggestion.type.attachments_enabled? %>
+      <%#= attachments_for current_suggestion %>
+    <%# end %>
 
     <%= render partial: "supports", locals: { suggestion: current_suggestion } %>
   </div>
