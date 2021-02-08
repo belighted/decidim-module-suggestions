@@ -118,6 +118,11 @@ fr:
     events:
       suggestions:
         admin:
+          suggestion_created:
+            email_intro: La suggestion "%{resource_title}" a été créée. Consultez-la sur <a href="%{admin_suggestion_url}">le panneau d'administration,</a>
+            email_outro: Vous avez reçu cette notification parce que vous êtes un administrateur de la plateforme.
+            email_subject: La suggestion "%{resource_title}" a été créée.
+            notification_title: La suggestion "%{resource_title}" a été créée. Consultez-la sur <a href="%{admin_suggestion_path}">le panneau d'administration,</a>
           suggestion_sent_to_technical_validation:
             email_intro: La suggestion "%{resource_title}" a été envoyée pour validation technique. Consultez-la sur <a href="%{admin_suggestion_url}">le panneau d'administration,</a>
             email_outro: Vous avez reçu cette notification parce que vous êtes un administrateur de la plateforme.
@@ -128,6 +133,11 @@ fr:
           email_outro: Vous avez reçu cette notification parce que vous suivez %{resource_title}. Vous pouvez arrêter de recevoir des notifications à partir du lien précédent.
           email_subject: La date de fin du recueil des signatures pour la suggestion est prolongée !
           notification_title: La date de fin de recueil des signatures pour la suggestion <a href="%{resource_path}">%{resource_title}</a> a été prolongée.
+        suggestion_sent_to_technical_validation:
+          email_intro: La suggestion "%{resource_title}" a été envoyée pour validation technique.
+          email_outro: Vous avez reçu cette notification parce que vous êtes l'auteur de la suggestion.
+          email_subject: La suggestion "%{resource_title}" a été envoyée pour validation technique.
+          notification_title: La suggestion <a href="%{resource_path}">%{resource_title}</a> a été envoyée pour validation technique.
         milestone_completed:
           affected_user:
             email_intro: Votre suggestion %{resource_title} a atteint %{percentage}% de signatures!

@@ -118,6 +118,11 @@ nl:
     events:
       suggestions:
         admin:
+          suggestion_created:
+            email_intro: De suggestie "%{resource_title}" is gemaakt. Bekijk het via <a href="%{admin_suggestion_url}">het beheerpaneel</a>
+            email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
+            email_subject: Suggestie "%{resource_title}" is gemaakt.
+            notification_title: De suggestie "%{resource_title}" is gemaakt. Bekijk het via <a href="%{admin_suggestion_path}">het beheerpaneel</a>
           suggestion_sent_to_technical_validation:
             email_intro: De suggestie "%{resource_title}" is verzonden naar technische validatie. Bekijk het via <a href="%{admin_suggestion_url}">het beheerpaneel</a>
             email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
@@ -128,6 +133,11 @@ nl:
           email_outro: U hebt deze melding ontvangen omdat u %{resource_title} volgt. Je kunt de meldingen stoppen door de vorige link te volgen.
           email_subject: Einddatum handtekeningen voor de suggestie verlengd!
           notification_title: De einddatum van de ondertekening van het <a href="%{resource_path}">%{resource_title}</a> suggestie is verlengd.
+        suggestion_sent_to_technical_validation:
+          email_intro: De suggestie "%{resource_title}" is verzonden naar technische validatie.
+          email_outro: Je hebt deze melding ontvangen omdat u de auteur van de suggestie bent.
+          email_subject: Suggestie "%{resource_title}" werd verzonden naar technische validatie.
+          notification_title: De suggestie <a href="%{resourse_path}">"%{resource_title}"</a> is verzonden naar technische validatie.
         milestone_completed:
           affected_user:
             email_intro: Uw suggestie %{resource_title} heeft %{percentage}% handtekeningen bereikt!

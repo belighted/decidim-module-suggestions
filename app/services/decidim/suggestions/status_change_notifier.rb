@@ -35,7 +35,7 @@ module Decidim
       def notify_suggestion_creation
         Decidim::Suggestions::SuggestionsMailer
           .notify_creation(suggestion)
-          .deliver_later
+          .deliver_later(wait: 10.seconds)
       end
 
       # Does nothing
@@ -62,7 +62,7 @@ module Decidim
 
           Decidim::Suggestions::SuggestionsMailer
             .notify_state_change(suggestion, committee_member.user)
-            .deliver_later
+            .deliver_later(wait: 10.seconds)
         end
       end
 
@@ -72,14 +72,14 @@ module Decidim
 
           Decidim::Suggestions::SuggestionsMailer
             .notify_state_change(suggestion, follower)
-            .deliver_later
+            .deliver_later(wait: 10.seconds)
         end
       end
 
       def notify_author
         Decidim::Suggestions::SuggestionsMailer
           .notify_state_change(suggestion, suggestion.author)
-          .deliver_later
+          .deliver_later(wait: 10.seconds)
       end
     end
   end

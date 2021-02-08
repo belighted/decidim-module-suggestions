@@ -32,6 +32,7 @@ module Decidim
           end
 
           notify_admins
+          notify_author
 
           broadcast(:ok, suggestion)
         end
@@ -52,6 +53,16 @@ module Decidim
           }
 
           Decidim::EventsManager.publish(data)
+        end
+
+        def notify_author
+          Decidim::EventsManager.publish(
+            event: "decidim.events.suggestions.suggestion_sent_to_technical_validation",
+            event_class: Decidim::Suggestions::SuggestionSentToTechnicalValidationEvent,
+            resource: suggestion,
+            affected_users: [suggestion.author],
+            force_send: true
+          )
         end
       end
     end

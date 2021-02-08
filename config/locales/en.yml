@@ -141,6 +141,11 @@ en:
     events:
       suggestions:
         admin:
+          suggestion_created:
+            email_intro: The suggestion "%{resource_title}" has been created. Check it out at <a href="%{admin_suggestion_url}">the admin panel</a>
+            email_outro: You have received this notification because you are an admin of the platform.
+            email_subject: Suggestion "%{resource_title}" has been created.
+            notification_title: The suggestion "%{resource_title}" has been created. Check it out at <a href="%{admin_suggestion_path}">the admin panel</a>
           suggestion_sent_to_technical_validation:
             email_intro: The suggestion "%{resource_title}" has been sent to technical validation. Check it out at <a href="%{admin_suggestion_url}">the admin panel</a>
             email_outro: You have received this notification because you are an admin of the platform.
@@ -151,6 +156,11 @@ en:
           email_outro: You have received this notification because you are following %{resource_title}. You can stop receiving notifications following the previous link.
           email_subject: Suggestion signatures end date extended!
           notification_title: The signatures end date for the <a href="%{resource_path}">%{resource_title}</a> suggestion have been extended.
+        suggestion_sent_to_technical_validation:
+          email_intro: The suggestion "%{resource_title}" has been sent to technical validation.
+          email_outro: You have received this notification because you are author of suggestion.
+          email_subject: Suggestion "%{resource_title}" has been sent to technical validation.
+          notification_title: The suggestion <a href="%{resource_path}">%{resource_title}</a> has been sent to technical validation.
         milestone_completed:
           affected_user:
             email_intro: Your suggestion %{resource_title} has achieved the %{percentage}% of signatures!
