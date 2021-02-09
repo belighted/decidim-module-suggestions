@@ -20,7 +20,7 @@ module Suggestions
         organization.omniauth_settings = form.encrypted_omniauth_settings
         organization.smtp_settings = form.encrypted_smtp_settings
 
-        organization.suggestions_settings = form.clean_suggestions_settings
+        organization.suggestions_settings = form.suggestions_settings
 
         organization.save!
       end

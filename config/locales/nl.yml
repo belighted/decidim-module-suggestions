@@ -363,6 +363,11 @@ nl:
           notification_title: Het <a href="%{resource_path}">%{resource_title}</a> suggestie werd goedgekeurd door <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
       index:
         title: suggesties
+      organization_suggestions_settings:
+        allowed_regions:
+          brussels: Brussel
+          flemish: Vlaams
+          walloon: Waals
       suggestion_signatures:
         fill_personal_data:
           continue: Doorgaan met
@@ -465,12 +470,12 @@ nl:
           create:
             modal_title: Sorry, je mag deze actie niet uitvoeren
             minimum_age_not_valid: Je moet minstens %{minimum_age} jaar oud zijn om de suggestie te creëren
-            postal_code_not_valid: U moet gedomicilieerd zijn in het Brussels Hoofdstedelijk Gewest om de suggestie te creëren
-            minimum_age_and_postal_code_not_valid: Je moet minstens %{minimum_age} jaar oud zijn en gedomicilieerd in het Brussels Hoofdstedelijk Gewest om de suggestie te creëren
+            allowed_region_not_valid: U moet gedomicilieerd zijn in het %{region_name} Gewest om de suggestie te creëren
+            minimum_age_and_allowed_region_not_valid: Je moet minstens %{minimum_age} jaar oud zijn en gedomicilieerd in het %{region_name} Gewest om de suggestie te creëren
           sign:
             minimum_age_not_valid: Je moet minstens %{minimum_age} jaar oud zijn om de suggestie te ondertekenen
-            postal_code_not_valid: U moet gedomicilieerd zijn in het Brussels Hoofdstedelijk Gewest om de suggestie te ondertekenen
-            minimum_age_and_postal_code_not_valid: Je moet minstens %{minimum_age} jaar oud zijn en gedomicilieerd in het Brussels Hoofdstedelijk Gewest om de suggestie te ondertekenen
+            allowed_region_not_valid: U moet gedomicilieerd zijn in het %{region_name} Gewest om de suggestie te ondertekenen
+            minimum_age_and_allowed_region_not_valid: Je moet minstens %{minimum_age} jaar oud zijn en gedomicilieerd in het %{region_name} Gewest om de suggestie te ondertekenen
 
       suggestions_mailer:
         creation_subject: Je burgersuggestie '%{title}' is gemaakt

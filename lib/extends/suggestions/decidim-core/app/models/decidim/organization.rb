@@ -15,13 +15,12 @@ module Suggestions
       #
       def suggestions_settings_allow_to?(user, action)
         suggestions_settings_minimum_age_allow_to?(user, action) &&
-          suggestions_settings_allowed_postal_codes_allow_to?(user, action)
+          suggestions_settings_allowed_region_allow_to?(user, action)
       end
 
       def suggestions_settings_minimum_age_allow_to?(user, action)
         return true if !user || user.admin?
-        return true if self.suggestions_settings.blank?
-        minimum_age = self.suggestions_settings["#{action}_suggestion_minimum_age"]
+        minimum_age = suggestions_settings_minimum_age(action)
         return true if minimum_age.blank?
 
         authorization = Decidim::Suggestions::UserAuthorizations.for(user).first
@@ -32,16 +31,17 @@ module Suggestions
         true
       end
 
-      def suggestions_settings_allowed_postal_codes_allow_to?(user, action)
+      def suggestions_settings_allowed_region_allow_to?(user, action)
         return true if !user || user.admin?
-        return true if self.suggestions_settings.blank?
-        allowed_postal_codes = self.suggestions_settings["#{action}_suggestion_allowed_postal_codes"]
-        return true if allowed_postal_codes.blank?
+        allowed_region = suggestions_settings_allowed_region(action)
+        return true if allowed_region.blank?
+        region_codes = (Decidim::Organization::SUGGESTIONS_SETTINGS_ALLOWED_REGIONS.dig(allowed_region, :municipalities) || []).map{|m| m[:idM]}.uniq
+        return true if region_codes.blank?
 
         authorization = Decidim::Suggestions::UserAuthorizations.for(user).first
         return false if !authorization || authorization.metadata[:postal_code].blank?
 
-        return false unless allowed_postal_codes.member?(authorization.metadata[:postal_code])
+        return false unless region_codes.member?(authorization.metadata[:postal_code])
 
         true
       end
@@ -49,6 +49,11 @@ module Suggestions
       def suggestions_settings_minimum_age(action)
         return if self.suggestions_settings.blank?
         self.suggestions_settings["#{action}_suggestion_minimum_age"]
+      end
+
+      def suggestions_settings_allowed_region(action)
+        return if self.suggestions_settings.blank?
+        self.suggestions_settings["#{action}_suggestion_allowed_region"]
       end
 
     end

@@ -120,17 +120,21 @@ module Decidim
       def organization_suggestions_settings_validation_message(suggestion, action)
         org = suggestion&.organization || current_organization
         minimum_age_allow = org.suggestions_settings_minimum_age_allow_to?(current_user, action)
-        postal_code_allow = org.suggestions_settings_allowed_postal_codes_allow_to?(current_user, action)
+        allowed_region_allow = org.suggestions_settings_allowed_region_allow_to?(current_user, action)
         message = ''
         t_scope = "decidim.suggestions.suggestions.organization_suggestions_settings.#{action}"
         unless minimum_age_allow
           message = t("minimum_age_not_valid", scope: t_scope, minimum_age: org.suggestions_settings_minimum_age(action))
         end
-        unless postal_code_allow
-          message = t("postal_code_not_valid", scope: t_scope)
+        unless allowed_region_allow
+          region_name = t(org.suggestions_settings_allowed_region(action), scope: "decidim.suggestions.organization_suggestions_settings.allowed_regions")
+          message = t("allowed_region_not_valid", scope: t_scope, region_name: region_name)
         end
-        if !minimum_age_allow && !postal_code_allow
-          message = t("minimum_age_and_postal_code_not_valid", scope: t_scope, minimum_age: org.suggestions_settings_minimum_age(action))
+        if !minimum_age_allow && !allowed_region_allow
+          region_name = t(org.suggestions_settings_allowed_region(action), scope: "decidim.suggestions.organization_suggestions_settings.allowed_regions")
+          message = t("minimum_age_and_allowed_region_not_valid", scope: t_scope,
+                      minimum_age: org.suggestions_settings_minimum_age(action),
+                      region_name: region_name)
         end
         message
       end

@@ -392,6 +392,11 @@ en:
           notification_title: The <a href="%{resource_path}">%{resource_title}</a> suggestion was endorsed by <a href="%{author_path}">%{author_name} %{author_nickname}</a>.
       index:
         title: Suggestions
+      organization_suggestions_settings:
+        allowed_regions:
+          brussels: Brussels
+          flemish: Flemish
+          walloon: Walloon
       suggestion_signatures:
         fill_personal_data:
           continue: Continue
@@ -497,13 +502,12 @@ en:
           create:
             modal_title: Sorry, you are not allowed to perfom this action
             minimum_age_not_valid: You must be at least %{minimum_age} years old to create the suggestion
-            postal_code_not_valid: You must be domiciled in Brussels-Capital region to create the suggestion
-            minimum_age_and_postal_code_not_valid: You must be at least %{minimum_age} years old and domiciled in Brussels-Capital region to create the suggestion
+            allowed_region_not_valid: You must be domiciled in %{region_name} region to create the suggestion
+            minimum_age_and_allowed_region_not_valid: You must be at least %{minimum_age} years old and domiciled in %{region_name} region to create the suggestion
           sign:
             minimum_age_not_valid: You must be at least %{minimum_age} years old to sign the suggestion
-            postal_code_not_valid: You must be domiciled in Brussels-Capital region to sign the suggestion
-            minimum_age_and_postal_code_not_valid: You must be at least %{minimum_age} years old and domiciled in Brussels-Capital region to sign the suggestion
-
+            allowed_region_not_valid: You must be domiciled in %{region_name} region to sign the suggestion
+            minimum_age_and_allowed_region_not_valid: You must be at least %{minimum_age} years old and domiciled in %{region_name} region to sign the suggestion
       suggestions_mailer:
         creation_subject: Your suggestion '%{title}' has been created
         suggestion_link:
@@ -548,9 +552,9 @@ en:
         suggestions_settings:
           fieldset_title: Suggestions settings
           create_suggestion_minimum_age_hint: Leave blank to skip minimum age validation.
-          create_suggestion_allowed_postal_codes_hint: Enter each one of them in a new line. Leave blank to skip postal codes validation.
+          create_suggestion_allowed_region_hint: Leave blank to skip postal codes validation.
           sign_suggestion_minimum_age_hint: Leave blank to skip minimum age validation.
-          sign_suggestion_allowed_postal_codes_hint: Enter each one of them in a new line. Leave blank to skip postal codes validation.
+          sign_suggestion_allowed_region_hint: Leave blank to skip postal codes validation.
     menu:
       suggestions: Suggestions
     resources:

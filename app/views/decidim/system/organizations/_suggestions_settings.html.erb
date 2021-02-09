@@ -3,11 +3,16 @@
   <%= f.fields_for :suggestions_settings do %>
     <%= f.number_field :create_suggestion_minimum_age %>
     <p class="help-text"><%= t(".create_suggestion_minimum_age_hint") %></p>
-    <%= f.text_area :create_suggestion_allowed_postal_codes %>
-    <p class="help-text"><%= t(".create_suggestion_allowed_postal_codes_hint") %></p>
+    <%= f.select :create_suggestion_allowed_region,
+                 Decidim::Organization::SUGGESTIONS_SETTINGS_ALLOWED_REGIONS.keys.map {|region| [I18n.t(region, scope: "decidim.suggestions.organization_suggestions_settings.allowed_regions"), region]},
+                 include_blank: true %>
+    <p class="help-text"><%= t(".create_suggestion_allowed_region_hint") %></p>
+
     <%= f.number_field :sign_suggestion_minimum_age %>
     <p class="help-text"><%= t(".sign_suggestion_minimum_age_hint") %></p>
-    <%= f.text_area :sign_suggestion_allowed_postal_codes %>
-    <p class="help-text"><%= t(".sign_suggestion_allowed_postal_codes_hint") %></p>
+    <%= f.select :sign_suggestion_allowed_region,
+                 Decidim::Organization::SUGGESTIONS_SETTINGS_ALLOWED_REGIONS.keys.map {|region| [I18n.t(region, scope: "decidim.suggestions.organization_suggestions_settings.allowed_regions"), region]},
+                 include_blank: true %>
+    <p class="help-text"><%= t(".sign_suggestion_allowed_region_hint") %></p>
   <% end %>
 </fieldset>
