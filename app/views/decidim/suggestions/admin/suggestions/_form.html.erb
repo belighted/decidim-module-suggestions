@@ -84,13 +84,13 @@
       </div>
     </div>
 
-    <% if current_suggestion.accepts_offline_votes? && current_user.admin? %>
-      <div class="row">
-        <div class="columns xlarge-6">
-          <%= form.number_field :offline_votes, min: 1 %>
-        </div>
-      </div>
-    <% end %>
+    <!--<%# if current_suggestion.accepts_offline_votes? && current_user.admin? %>-->
+      <!--<div class="row">-->
+        <!--<div class="columns xlarge-6">-->
+          <!--<%#= form.number_field :offline_votes, min: 1 %>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--<%# end %>-->
 
     <% if allowed_to?(:read, :attachment, suggestion: current_participatory_space) %>
       <%= render partial: "suggestion_attachments", locals: { current_suggestion: current_suggestion, current_participatory_space: current_participatory_space } %>
