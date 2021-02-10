@@ -127,7 +127,7 @@ module Decidim
       def notify_admins(suggestion)
         Decidim::EventsManager.publish(
           event: "decidim.events.suggestions.admin.suggestion_created",
-          event_class: Decidim::Suggestions::Admin::SuggestionCreatedEvent,
+          event_class: Decidim::Suggestions::Admin::CreateSuggestionEvent,
           resource: suggestion,
           affected_users: current_user.organization.admins.all,
           force_send: true

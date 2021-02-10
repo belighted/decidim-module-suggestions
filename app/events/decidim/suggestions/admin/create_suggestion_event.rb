@@ -3,7 +3,7 @@
 module Decidim
   module Suggestions
     module Admin
-      class SuggestionCreatedEvent < Decidim::Events::SimpleEvent
+      class CreateSuggestionEvent < Decidim::Events::SimpleEvent
         include Rails.application.routes.mounted_helpers
 
         i18n_attributes :admin_suggestion_url, :admin_suggestion_path
