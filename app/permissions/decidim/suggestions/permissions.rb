@@ -52,7 +52,7 @@ module Decidim
         return unless [:suggestion, :participatory_space].include?(permission_action.subject) &&
                       permission_action.action == :read
 
-        return allow! if suggestion.published? || suggestion.rejected? || suggestion.accepted?
+        return allow! if readable?(suggestion)
         return allow! if user && (suggestion.has_authorship?(user) || user.admin?)
 
         # Unregistered users should see unpublished suggestion in order to support/vote them via shared link
@@ -218,6 +218,13 @@ module Decidim
       def organization_suggestions_settings_allow_to?(action)
         organization = suggestion&.organization || user&.organization
         organization.suggestions_settings_allow_to?(user, action)
+      end
+
+      def readable?(suggestion)
+        return false if suggestion.blank?
+
+        suggestion.published? || suggestion.rejected? || suggestion.accepted? ||
+          suggestion.debatted? || suggestion.examinated? || suggestion.classified?
       end
 
     end
