@@ -78,7 +78,7 @@ fr:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Rechercher %{collection} par titre, description, ID ou nom de l'auteur.
       menu:
         suggestions: Suggestions
-        suggestions_types: Types d'suggestions
+        suggestions_types: Types de suggestions
       models:
         suggestions:
           fields:
@@ -96,7 +96,7 @@ fr:
         suggestions_types:
           fields:
             created_at: Créé à
-            title: Types d'suggestion
+            title: Types de suggestion
           name: Type d'suggestion
         suggestions_votes:
           fields:
@@ -114,7 +114,7 @@ fr:
             timestamp: Horodatage
       titles:
         suggestions: Suggestions
-        suggestions_types: Types d'suggestion
+        suggestions_types: Types de suggestion
     events:
       suggestions:
         admin:
@@ -486,7 +486,7 @@ fr:
         progress_report_body_for: La suggestion %{title} a atteint %{percentage}% des soutiens requis.
         progress_report_for: 'Résumé de l''suggestion : %{title}'
         promotal_committee_help: Rappelez-vous que vous devez inviter au moins %{member_count} personnes au Comité de promotion. Envoyez le lien suivant pour les inviter
-        status_change_body_for: 'Le statut de l''suggestion %{title} a été changé pour : %{state}'
+        status_change_body_for: Le statut de la suggestion %{title} a été changé pour : %{state}
         status_change_for: La suggestion %{title} a changé de statut
       last_activity:
         new_suggestion: Nouvelle suggestion
