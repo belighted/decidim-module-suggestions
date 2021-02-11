@@ -74,6 +74,23 @@ fr:
       actions:
         new_suggestion_type: Nouveau type d'suggestion
       filters:
+        suggestions:
+          decidim_area_id_eq:
+            label: Zone
+          state_eq:
+            label: État
+            values:
+              accepted: Accepté
+              classified: Classée
+              created: Créée
+              debatted: Débattue
+              discarded: Retirée
+              examinated: Examinée
+              published: Publié
+              rejected: Rejeté
+              validating: Validation technique
+          type_id_eq:
+            label: Type
         search_placeholder:
           title_or_description_or_id_string_or_author_name_or_author_nickname_cont: Rechercher %{collection} par titre, description, ID ou nom de l'auteur.
       menu:
