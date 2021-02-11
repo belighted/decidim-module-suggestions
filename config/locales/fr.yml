@@ -486,7 +486,7 @@ fr:
         progress_report_body_for: La suggestion %{title} a atteint %{percentage}% des soutiens requis.
         progress_report_for: 'Résumé de l''suggestion : %{title}'
         promotal_committee_help: Rappelez-vous que vous devez inviter au moins %{member_count} personnes au Comité de promotion. Envoyez le lien suivant pour les inviter
-        status_change_body_for: Le statut de la suggestion %{title} a été changé pour : %{state}
+        status_change_body_for: 'Le statut de la suggestion %{title} a été changé pour : %{state}'
         status_change_for: La suggestion %{title} a changé de statut
       last_activity:
         new_suggestion: Nouvelle suggestion
