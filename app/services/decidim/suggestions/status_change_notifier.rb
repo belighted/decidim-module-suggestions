@@ -28,6 +28,7 @@ module Decidim
         notify_validating_suggestion if suggestion.validating?
         notify_validating_result if suggestion.published? || suggestion.discarded?
         notify_support_result if suggestion.rejected? || suggestion.accepted?
+        notify_manual_change if suggestion.classified? || suggestion.examinated? || suggestion.debatted?
       end
 
       private
@@ -51,6 +52,12 @@ module Decidim
       end
 
       def notify_support_result
+        notify_followers
+        notify_committee_members
+        notify_author
+      end
+
+      def notify_manual_change
         notify_followers
         notify_committee_members
         notify_author
