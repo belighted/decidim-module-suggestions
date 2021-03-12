@@ -151,6 +151,11 @@ en:
             email_outro: You have received this notification because you are an admin of the platform.
             email_subject: Suggestion "%{resource_title}" was sent to technical validation.
             notification_title: The suggestion "%{resource_title}" has been sent to technical validation. Check it out at <a href="%{admin_suggestion_path}">the admin panel</a>
+          votes_amount_milestone_completed:
+            email_intro: The suggestion %{resource_title} has achieved %{amount} signatures. Check it out at <a href="%{admin_suggestion_path}">the admin panel</a>
+            email_outro: You have received this notification because you are an admin of the platform.
+            email_subject: Suggestion "%{resource_title}" has new milestone completed!
+            notification_title: The suggestion "%{resource_title}" has achieved %{amount} signatures. Check it out at <a href="%{admin_suggestion_path}">the admin panel</a>
         suggestion_extended:
           email_intro: The signatures end date for the suggestion %{resource_title} have been extended!
           email_outro: You have received this notification because you are following %{resource_title}. You can stop receiving notifications following the previous link.
@@ -172,6 +177,11 @@ en:
             email_outro: You have received this notification because you are following %{resource_title}. You can stop receiving notifications following the previous link.
             email_subject: New milestone completed!
             notification_title: The <a href="%{resource_path}">%{resource_title}</a> suggestion has achieved the %{percentage}% of signatures.
+        votes_amount_milestone_completed:
+          email_intro: Your suggestion %{resource_title} has achieved %{amount} signatures!
+          email_outro: You have received this notification because you are the author of the suggestion %{resource_title}.
+          email_subject: New milestone completed!
+          notification_title: Your <a href="%{resource_path}">%{resource_title}</a> suggestion has achieved %{amount} signatures.
         support_threshold_reached:
           email_intro: The suggestion %{resource_title} has reached the support threshold
           email_outro: You have received this notification because you are an admin of the platform.

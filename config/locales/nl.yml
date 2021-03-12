@@ -128,6 +128,11 @@ nl:
             email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
             email_subject: Suggestie "%{resource_title}" werd verzonden naar technische validatie.
             notification_title: De suggestie "%{resource_title}" is verzonden naar technische validatie. Bekijk het via <a href="%{admin_suggestion_path}">het beheerpaneel</a>
+          votes_amount_milestone_completed:
+            email_intro: De suggestie "%{resource_title}" heeft %{amount} handtekeningen bereikt. Bekijk het via <a href="%{admin_suggestion_url}">het beheerpaneel</a>
+            email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
+            email_subject: Suggestie "%{resource_title}" werd verzonden naar technische validatie.
+            notification_title: De suggestie "%{resource_title}" heeft %{amount} handtekeningen bereikt. Bekijk het via <a href="%{admin_suggestion_path}">het beheerpaneel</a>
         suggestion_extended:
           email_intro: De einddatum voor de handtekeningen van suggestie %{resource_title} is verlengd!
           email_outro: U hebt deze melding ontvangen omdat u %{resource_title} volgt. Je kunt de meldingen stoppen door de vorige link te volgen.
@@ -149,6 +154,11 @@ nl:
             email_outro: U hebt deze melding ontvangen omdat u %{resource_title} volgt. Je kunt de meldingen stoppen door de vorige link te volgen.
             email_subject: Nieuwe mijlpaal voltooid!
             notification_title: Het <a href="%{resource_path}">%{resource_title}</a> suggestie heeft %{percentage}% handtekeningen behaald.
+        votes_amount_milestone_completed:
+          email_intro: Uw suggestie %{resource_title} heeft %{amount} handtekeningen bereikt!
+          email_outro: U hebt deze melding ontvangen omdat u de auteur bent van de suggestie %{resource_title}.
+          email_subject: Nieuwe mijlpaal voltooid!
+          notification_title: Uw <a href="%{resource_path}">%{resource_title}</a> suggestie heeft %{amount} handtekeningen bereikt.
         support_threshold_reached:
           email_intro: De suggestie %{resource_title} heeft de steundrempel bereikt
           email_outro: Je hebt deze melding ontvangen omdat je beheerder bent van het platform.
