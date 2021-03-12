@@ -32,6 +32,7 @@ module Decidim
         percentage_after = @suggestion.reload.percentage
 
         notify_percentage_change(percentage_before, percentage_after)
+        notify_votes_amount_milestone_completed(@suggestion.reload.supports_count)
         notify_support_threshold_reached(percentage_after)
 
         broadcast(:ok, vote)
@@ -90,6 +91,29 @@ module Decidim
           followers: @suggestion.followers - [@suggestion.author],
           extra: {
             percentage: percentage
+          }
+        )
+      end
+
+      def notify_votes_amount_milestone_completed(amount)
+        return unless amount == 100
+
+        Decidim::EventsManager.publish(
+          event: "decidim.events.suggestions.votes_amount_milestone_completed",
+          event_class: Decidim::Suggestions::VotesAmountMilestoneCompletedEvent,
+          resource: @suggestion,
+          affected_users: [@suggestion.author],
+          extra: {
+            amount: amount
+          }
+        )
+        Decidim::EventsManager.publish(
+          event: "decidim.events.suggestions.admin.votes_amount_milestone_completed",
+          event_class: Decidim::Suggestions::Admin::VotesAmountMilestoneCompletedEvent,
+          resource: @suggestion,
+          affected_users: organization_admins,
+          extra: {
+            amount: amount
           }
         )
       end
